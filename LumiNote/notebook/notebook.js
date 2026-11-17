@@ -528,7 +528,7 @@ async function removeCard(cardEl, id) {
 
   // B5: offer undo — entry is tombstoned and lives in Trash for ~15 days.
   showUndoToast(
-    t('memory_moved_to_trash') || '已移到回收站',
+    t('memory_moved_to_trash') || 'Moved to trash',
     async () => {
       await restoreEntry(id);
       allEntries = await getAllEntries();

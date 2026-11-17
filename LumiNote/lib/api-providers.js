@@ -26,7 +26,7 @@ export async function loadConfig() {
         apiKey: '',
         endpoint: 'https://api.openai.com/v1',
         model: 'gpt-4o-mini',
-        outputLanguage: 'Chinese',
+        outputLanguage: 'English',
         aiSummaryDepth: 'brief',
         useCustomAI: false,
         p2provider: '',

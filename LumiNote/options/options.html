@@ -57,8 +57,7 @@
           AI Provider (Bring Your Own Key)
         </h2>
         <p class="field-hint" style="margin-bottom:12px;">
-          LumiNote never proxies your AI requests. Pick a provider, paste your own
-          API key, and the extension calls that provider directly.
+          Pick a provider and paste your own API key.
         </p>
         <div id="custom-ai-fields">
 
@@ -189,15 +188,8 @@
           <label class="field-label" for="displayLanguage" data-i18n="display_language">Display Language</label>
           <div class="select-wrapper">
             <select id="displayLanguage" class="md3-select">
-              <option value="auto">Auto (System)</option>
               <option value="en">English</option>
               <option value="zh">中文</option>
-              <!-- Hidden for beta — translations exist in i18n.js, uncomment to enable
-              <option value="zh-hk">繁體中文</option>
-              <option value="ja">日本語</option>
-              <option value="ko">한국어</option>
-              <option value="ru">Русский</option>
-              -->
             </select>
             <svg class="select-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="6 9 12 15 18 9"/>
@@ -210,8 +202,8 @@
           <label class="field-label" for="outputLanguage" data-i18n="ai_explanation_language">AI Explanation Language</label>
           <div class="select-wrapper">
             <select id="outputLanguage" class="md3-select">
-              <option value="Chinese">Chinese (中文)</option>
               <option value="English">English</option>
+              <option value="Chinese">Chinese (中文)</option>
               <option value="Japanese">Japanese (日本語)</option>
               <option value="Korean">Korean (한국어)</option>
               <option value="Spanish">Spanish (Español)</option>

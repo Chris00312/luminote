@@ -44,7 +44,7 @@ export async function handleExplainRequest(message, target) {
     imageData: imageAsset?.data || '',
     sourceTitle: sourceTitle || '',
     depth,
-    outputLanguage: config.outputLanguage || 'Chinese',
+    outputLanguage: config.outputLanguage || 'English',
   });
 
   // depth-based max_tokens — brief=256, detailed=1024, deep=2048

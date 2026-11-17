@@ -94,15 +94,10 @@ async function init() {
 
   updateProviderUI(config.provider);
 
-  // Live-switch UI language
+  // Live-switch UI language (the stored value is the only source; no auto-detect)
   $('displayLanguage').addEventListener('change', () => {
-    const val = $('displayLanguage').value;
-    if (val === 'auto') {
-      initLocale().then(() => applyI18n());
-    } else {
-      setLocale(val);
-      applyI18n();
-    }
+    setLocale($('displayLanguage').value);
+    applyI18n();
   });
 
   $('provider').addEventListener('change', () => {
@@ -328,8 +323,8 @@ async function loadConfig() {
         apiKey: '',
         endpoint: 'https://api.openai.com/v1',
         model: 'gpt-4o-mini',
-        displayLanguage: 'auto',
-        outputLanguage: 'Chinese',
+        displayLanguage: 'en',
+        outputLanguage: 'English',
         aiSummaryDepth: 'brief',
         p2provider: '',
         p2apiKey: '',

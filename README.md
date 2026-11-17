@@ -1,5 +1,10 @@
 <div align="center">
 
+<p>
+  <a href="README.md"><b>English</b></a> ·
+  <a href="docs/i18n/README.zh-CN.md">简体中文</a>
+</p>
+
 <img src="docs/header.png" alt="LumiNote — Mark any page, let AI explain it." width="100%" />
 
 <br/>
@@ -12,27 +17,27 @@
 </p>
 
 <p>
-  <b>把你的浏览器变成一个记忆库。</b><br/>
-  在任意网页或 PDF 上选中文字或图片，AI 分层解释它，<br/>
-  然后把结果存成一张随时能回访的记忆卡。
+  <b>Turn your browser into a memory library.</b><br/>
+  Select text or an image on any page or PDF, let AI explain it in layers,<br/>
+  then file it as a memory card you can return to anytime.
 </p>
 
 <p>
   <a href="https://github.com/Chris00312/luminote/releases/latest">
-    <img src="https://img.shields.io/badge/⬇_下载安装包-Chrome_/_Edge-1a6b4a?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Download installer" height="42" />
+    <img src="https://img.shields.io/badge/⬇_Download_installer-Chrome_/_Edge-1a6b4a?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Download installer" height="42" />
   </a>
   &nbsp;
-  <a href="#安装">
-    <img src="https://img.shields.io/badge/安装步骤-4_步搞定-2fa373?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Install steps" height="42" />
+  <a href="#install">
+    <img src="https://img.shields.io/badge/Install_steps-4_minutes-2fa373?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Install steps" height="42" />
   </a>
 </p>
 
 <p>
-  <a href="#功能"><img src="https://img.shields.io/badge/-功能-1a6b4a?style=flat-square" alt="Features" /></a>
-  <a href="#安装"><img src="https://img.shields.io/badge/-安装-228b5b?style=flat-square" alt="Install" /></a>
-  <a href="#配置-ai"><img src="https://img.shields.io/badge/-配置_AI-2fa373?style=flat-square" alt="Configure AI" /></a>
-  <a href="#mcp-服务器"><img src="https://img.shields.io/badge/-MCP-1a6b4a?style=flat-square" alt="MCP" /></a>
-  <a href="#开发"><img src="https://img.shields.io/badge/-开发-228b5b?style=flat-square" alt="Develop" /></a>
+  <a href="#features"><img src="https://img.shields.io/badge/-Features-1a6b4a?style=flat-square" alt="Features" /></a>
+  <a href="#install"><img src="https://img.shields.io/badge/-Install-228b5b?style=flat-square" alt="Install" /></a>
+  <a href="#configure-ai"><img src="https://img.shields.io/badge/-Configure_AI-2fa373?style=flat-square" alt="Configure AI" /></a>
+  <a href="#mcp-server"><img src="https://img.shields.io/badge/-MCP-1a6b4a?style=flat-square" alt="MCP" /></a>
+  <a href="#development"><img src="https://img.shields.io/badge/-Develop-228b5b?style=flat-square" alt="Develop" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/-MIT-2fa373?style=flat-square" alt="License" /></a>
 </p>
 
@@ -40,13 +45,13 @@
 
 ---
 
-## 它解决什么问题
+## The problem it solves
 
-你在网上读到一句重要的话，划词让 AI 解释了一下，理解了 —— 然后关掉页面，三天后想不起来在哪看到的。
+You read something important, highlight it, have AI explain it, and get it. Then you close the tab — and three days later you can't remember where you saw it.
 
-LumiNote 做的事很简单：**把"你关注过的那个位置"连同当时的理解一起保存下来**，并且让 AI 以后能直接读到。
+LumiNote does one simple thing: **it saves the exact spot you cared about, together with the understanding you built there** — and makes that memory readable by AI later.
 
-不是书签（只存 URL，忘了为什么存），不是笔记（失去原始上下文），也不是划词翻译（只解决当下）。
+It isn't a bookmark (URL only, you forget why), not a note (loses the original context), and not a highlight-translator (solves only the moment).
 
 <div align="center">
   <img src="docs/screenshots/how-it-works.png" alt="Mark → Explain → Moodboard" width="88%" />
@@ -54,119 +59,108 @@ LumiNote 做的事很简单：**把"你关注过的那个位置"连同当时的�
 
 <br/>
 
-## 功能
+## Features
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### 🔍 分层解释
-AI 卡片从页面右下角滑入，三层深度：一句话 / 详细语境 / 深度阅读。随时切换，可追问。
+### 🔍 Layered explanation
+An AI card slides in from the bottom right with three depths: one-liner / detailed context / deep read. Switch anytime, ask follow-ups.
 
 </td>
 <td width="50%" valign="top">
 
-### 🎯 精确回访
-保存的不只是文字，还有它在原页面中的位置。下次回来直接跳回那句话。
+### 🎯 Precise return
+What you save isn't just text — it's the position in the original page. Come back and jump straight to that sentence.
 
 </td>
 </tr>
 <tr>
 <td valign="top">
 
-### 🧊 灵感板
-记忆卡落到玻璃质感画布上。拖拽、分组、打标签、导出 PNG / JSON。
+### 🧊 Moodboard
+Memory cards land on a glass canvas. Drag, group, tag, export as PNG or JSON.
 
 </td>
 <td valign="top">
 
 ### 🤖 Agent + MCP
-内置 Agent 能读写你的记忆库。同一份数据也通过 MCP 暴露给 Claude Desktop、Cursor。
+A built-in Agent reads and writes your memory store. The same data is exposed over MCP to Claude Desktop and Cursor.
 
 </td>
 </tr>
 <tr>
 <td valign="top">
 
-### 📄 原生 PDF 支持
-自托管 pdf.js，PDF 里选中文字同样能解释、能保存、能回访。
+### 📄 Native PDF support
+Self-hosted pdf.js — text selected inside a PDF can be explained, saved and revisited the same way.
 
 </td>
 <td valign="top">
 
-### 🔐 全本地
-数据只写在浏览器本地存储里。没有账号，没有服务器，没有遥测。
+### 🔐 Fully local
+Everything is written to browser local storage. No account, no server, no telemetry.
 
 </td>
 </tr>
 </table>
 
 <div align="center">
-  <img src="docs/screenshots/interfaces.png" alt="LumiNote 的所有界面" width="88%" />
+  <img src="docs/screenshots/interfaces.png" alt="Every LumiNote surface" width="88%" />
 </div>
 
 <br/>
 
-## 安装
+## Install
 
-不需要应用商店。下载 zip，加载到浏览器里就行。
+No app store needed. Download the zip and load it into your browser.
 
 <div align="center">
-  <img src="docs/screenshots/download.png" alt="下载与安装" width="88%" />
+  <img src="docs/screenshots/download.png" alt="Download and install" width="88%" />
 </div>
 
-**1. 下载并解压**
+**1. Download and unzip**
 
-到 [**Releases**](https://github.com/Chris00312/luminote/releases/latest) 下载最新的 `luminote-vX.Y.Z.zip`，解压到一个固定的文件夹。
-> 之后别删这个文件夹 —— 扩展要一直从它加载。
+Grab the latest `luminote-vX.Y.Z.zip` from [**Releases**](https://github.com/Chris00312/luminote/releases/latest) and unzip it into a permanent folder.
+> Don't delete that folder afterwards — the extension loads from it every time.
 
-**2. 打开扩展管理页**
+**2. Open the extensions page**
 
-地址栏输入 `chrome://extensions`（Edge 用 `edge://extensions`）。
+Go to `chrome://extensions` (or `edge://extensions` on Edge).
 
-**3. 加载已解压的扩展**
+**3. Load the unpacked extension**
 
-打开右上角 **开发者模式**，点 **加载已解压的扩展程序**，选中刚解压出来的 `luminote` 文件夹。
+Turn on **Developer mode** in the top right, click **Load unpacked**, and pick the unzipped `luminote` folder.
 
-**4. 填入你自己的 API Key**
+**4. Add your own API key**
 
-点扩展图标 → 设置，选一个 AI 服务商，粘贴你的 Key。
+Click the extension icon → Settings, pick an AI provider and paste your key.
 
-> **关于自动更新**：以开发者模式加载的扩展不会自动更新。想升级时重新下载 zip 并覆盖原文件夹，本地数据不会丢失。
+The UI ships in English and Simplified Chinese; switch under Settings → Language.
+
+> **About updates**: an unpacked extension does not auto-update. To upgrade, download the new zip and replace the folder — your local data stays intact.
 
 <br/>
 
-## 配置 AI
+## Configure AI
 
-LumiNote **不自带模型，也不代理任何请求**。你的 Key、你的额度、你的账单 —— 请求直接从浏览器发给你选的服务商。
-
-| 服务商 | 说明 |
+| Provider | Notes |
 | :--- | :--- |
-| **OpenAI / DeepSeek / 兼容** | 任意 OpenAI 兼容端点，自填 Base URL 与模型名 |
-| **Anthropic Claude** | 原生 Claude API |
-| **Google Gemini** | 原生 Gemini API |
-| **火山方舟 Volcengine** | Coding Plan，固定 `https://ark.cn-beijing.volces.com/api/coding/v3` |
-| **MiniMax** | Token Plan，兼容 Anthropic 协议 |
-| **阿里云百炼 Aliyun** | Coding Plan，固定 `https://coding.dashscope.aliyuncs.com/v1` |
+| **OpenAI / DeepSeek / compatible** | Any OpenAI-compatible endpoint; set base URL and model yourself |
+| **Anthropic Claude** | Native Claude API |
+| **Google Gemini** | Native Gemini API |
+| **Volcengine 方舟** | Coding Plan, fixed `https://ark.cn-beijing.volces.com/api/coding/v3` |
+| **MiniMax** | Token Plan, Anthropic-protocol compatible |
+| **Aliyun 百炼** | Coding Plan, fixed `https://coding.dashscope.aliyuncs.com/v1` |
 
-**Deep Think**（双模型交叉思考）和 **Agent**（工具调用）可以单独配第二组 Key；不配时复用第一组。
-
-<details>
-<summary><b>为什么不做内置 Key？</b></summary>
+**Deep Think** (two-model cross-examination) and **Agent** (tool calling) can each use a second key; they fall back to the first one if you don't configure it.
 
 <br/>
 
-因为这个版本要能公开托管。把 API Key 打进一个开源仓库，等于把它公开。
+## MCP server
 
-BYOK 还有两个好处：你能自己控制成本和模型选择，而且扩展不需要任何后端 —— 没有服务器可以宕机，也没有服务器能看到你的数据。
-
-</details>
-
-<br/>
-
-## MCP 服务器
-
-让 Claude Desktop、Cursor 或其他 MCP 客户端读写你的记忆库。
+Let Claude Desktop, Cursor or any MCP client read and write your memory store.
 
 ```bash
 npm install -g luminote-mcp-server
@@ -183,124 +177,124 @@ npm install -g luminote-mcp-server
 }
 ```
 
-它通过本地 WebSocket（`ws://127.0.0.1:19960`）连到扩展，所有数据仍然留在你的机器上。
+It talks to the extension over a local WebSocket (`ws://127.0.0.1:19960`), so all data stays on your machine.
 
 <br/>
 
-## 开发
+## Development
 
-扩展本身**没有构建步骤** —— 改完代码，在 `chrome://extensions` 点扩展卡片上的刷新按钮即可。
+The extension has **no build step** — edit the code, then hit the refresh button on its card in `chrome://extensions`.
 
 ```bash
 git clone https://github.com/Chris00312/luminote.git
 cd luminote
 ```
 
-**重新打包安装包：**
+**Repackage the installer:**
 
 ```bash
 node scripts/package-extension.mjs
-# → website/downloads/luminote-chrome.zip（不进 git）
+# → website/downloads/luminote-chrome.zip (not tracked by git)
 ```
 
-**发版**（打包 + 创建 GitHub Release，需先 `gh auth login`）：
+**Publish a release** (package + create a GitHub Release; requires `gh auth login`):
 
 ```bash
 node scripts/release.mjs
 ```
 
-**本地预览官网：**
+**Preview the marketing site locally:**
 
 ```bash
 python3 -m http.server 8000 --directory website
-# 打开 http://localhost:8000
+# open http://localhost:8000
 ```
 
-**重新生成 README 截图**（需要 `playwright-core` 与本机 Chrome）：
+**Regenerate the README screenshots** (needs `playwright-core` and a local Chrome):
 
 ```bash
 python3 -m http.server 8765 --directory website
 node scripts/generate-screenshots.mjs
 ```
 
-**重新生成 README 页头与徽章**（需要 `brew install librsvg`）：
+**Regenerate the README header and badges** (needs `brew install librsvg`):
 
 ```bash
 node scripts/generate-readme-assets.mjs
 ```
 
 <details>
-<summary><b>目录结构</b></summary>
+<summary><b>Repository layout</b></summary>
 
 <br/>
 
 ```
-LumiNote/                 Chrome 扩展本体（MV3）
-├── background/           Service worker：解释、PDF、记忆 API、右键菜单
-├── content/              内容脚本：划选气泡、解释卡片
-├── lib/                  AI 服务商、prompt、存储、i18n、Agent 引擎
-├── notebook/             笔记本页（记忆库 + 灵感板 + Agent）
-├── options/              设置页
-├── popup/                工具栏弹窗
-├── pdf-viewer/           自托管 pdf.js 阅读器
-├── welcome/              首次安装引导
-└── vendor/               第三方库（pdf.js、html2canvas）
+LumiNote/                 The Chrome extension (MV3)
+├── background/           Service worker: explain, PDF, memory API, context menus
+├── content/              Content script: selection bubble, explain card
+├── lib/                  AI providers, prompts, storage, i18n, agent engine
+├── notebook/             Full notebook page (memory + moodboard + agent)
+├── options/              Settings page
+├── popup/                Toolbar popup
+├── pdf-viewer/           Self-hosted pdf.js reader
+├── welcome/              First-run onboarding
+└── vendor/               Third-party libs (pdf.js, html2canvas)
 
-website/                  官网（静态 React + 浏览器内 Babel）
-├── components/           各区块组件 + 三语文案
-└── assets/               设计 token、logo、演示视频
+website/                  Marketing site (static React + in-browser Babel)
+├── components/           Section components + bilingual copy
+└── assets/               Design tokens, logo, demo video
 
-luminote-mcp-server/      MCP 服务器
-scripts/                  打包、发版、素材生成脚本
-docs/                    README 用图（页头、徽章、截图）
-design-system/           设计系统与 UI kit
+luminote-mcp-server/      MCP server
+scripts/                  Packaging, release and asset-generation scripts
+docs/                     README images (header, badges, screenshots)
+design-system/            Design system and UI kit
 ```
 
 </details>
 
 <br/>
 
-## 隐私
+## Privacy
 
-所有记忆、灵感板、图片都写在 `chrome.storage.local`。
+Every memory, moodboard and image is written to `chrome.storage.local`.
 
-扩展不收集、不上传任何数据。唯一的外部请求是你自己配置的 AI 服务商；唯一的外部连接是本机 MCP 客户端的 WebSocket。
+The extension collects nothing and uploads nothing. The only outbound requests go to the AI provider you configured; the only other connection is the local WebSocket to your own MCP client.
 
 <details>
-<summary>完整数据流</summary>
+<summary>Full data flow</summary>
 
 <br/>
 
-| 数据 | 去向 |
+| Data | Where it goes |
 | :--- | :--- |
-| 记忆、灵感板、图片 | `chrome.storage.local`（仅本机） |
-| AI 解释请求 | 你配置的服务商，浏览器直连 |
-| API Key | `chrome.storage.sync`（你浏览器的账号同步，不经我们） |
-| MCP 调用 | `ws://127.0.0.1:19960`（仅本机回环） |
-| 遥测 / 分析 | 无 |
+| Memories, moodboards, images | `chrome.storage.local` (this device only) |
+| AI explanation requests | The provider you configured, directly from your browser |
+| API key | `chrome.storage.sync` (your browser's own account sync — not us) |
+| MCP calls | `ws://127.0.0.1:19960` (loopback only) |
+| Telemetry / analytics | None |
 
 </details>
 
 <br/>
 
-## 参与贡献
+## Contributing
 
-Issue 和 PR 都欢迎。改动大一点的话，开 issue 先聊一下方向，避免白做。
+Issues and PRs are welcome. For anything larger than a typo, open an issue first so we can agree on the direction before you write code.
 
 ```bash
-# 本地验证
-node scripts/package-extension.mjs        # 打包能过
-node --check LumiNote/lib/*.js            # 语法检查
+# Local checks
+node scripts/package-extension.mjs        # packaging succeeds
+node --check LumiNote/lib/*.js            # syntax is valid
 ```
 
 <br/>
 
-## 许可证
+## License
 
 [MIT](LICENSE) © 2026 LumiNote contributors
 
 <br/>
 
 <div align="center">
-  <sub>标记 · 理解 · 记住 —— 在任何网页上</sub>
+  <sub>Mark · Understand · Remember — on any page</sub>
 </div>

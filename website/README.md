@@ -50,7 +50,7 @@ node scripts/package-extension.mjs
 
 ## 文案
 
-所有文案集中在 `components/copy.jsx`，按 `zh` / `en` / `ja` 三语组织。改文案只需要动这一个文件。
+所有文案集中在 `components/copy.jsx`，按 `zh` / `en` 双语组织（默认英文）。改文案只需要动这一个文件。
 
 ## LiveDemo 的真实 AI 解释
 

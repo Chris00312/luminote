@@ -7,11 +7,11 @@
 const DOWNLOADS = {
   chrome: {
     href: 'https://github.com/Chris00312/luminote/releases/latest',
-    label: { zh: '下载 Chrome / Edge 安装包', en: 'Download for Chrome / Edge', ja: 'Chrome / Edge 版をダウンロード' },
+    label: { zh: '下载 Chrome / Edge 安装包', en: 'Download for Chrome / Edge' },
   },
   source: {
     href: '#source',
-    label: { zh: '查看源码', en: 'View source', ja: 'ソースを見る' },
+    label: { zh: '查看源码', en: 'View source' },
   },
 };
 
@@ -22,39 +22,35 @@ function Download({ lang }) {
   const steps = [
     {
       n: '01',
-      zh_t: '下载并解压', en_t: 'Download & unzip', ja_t: 'ダウンロードして解凍',
+      zh_t: '下载并解压', en_t: 'Download & unzip',
       zh: '下载 zip，解压得到一个文件夹。',
       en: 'Download the zip and unzip it into a folder.',
-      ja: 'zip をダウンロードしてフォルダに解凍します。',
     },
     {
       n: '02',
-      zh_t: '打开扩展管理页', en_t: 'Open the extensions page', ja_t: '拡張機能ページを開く',
+      zh_t: '打开扩展管理页', en_t: 'Open the extensions page',
       zh: '浏览器地址栏输入 chrome://extensions（Edge 为 edge://extensions）。',
       en: 'Go to chrome://extensions (edge://extensions on Edge).',
-      ja: 'アドレスバーに chrome://extensions と入力（Edge は edge://extensions）。',
     },
     {
       n: '03',
-      zh_t: '加载已解压的扩展', en_t: 'Load unpacked', ja_t: 'パッケージ化されていない拡張機能を読み込む',
+      zh_t: '加载已解压的扩展', en_t: 'Load unpacked',
       zh: '打开右上角「开发者模式」，点「加载已解压的扩展程序」，选中刚解压的文件夹。',
       en: 'Turn on "Developer mode" (top right), click "Load unpacked", and pick the unzipped folder.',
-      ja: '右上の「デベロッパーモード」をオンにし、「パッケージ化されていない拡張機能を読み込む」で解凍したフォルダを選択。',
     },
     {
       n: '04',
-      zh_t: '填入你自己的 API Key', en_t: 'Add your own API key', ja_t: '自分の API Key を設定',
+      zh_t: '填入你自己的 API Key', en_t: 'Add your own API key',
       zh: '打开设置，选择 AI 服务商并粘贴你的 API Key。之后所有请求都由你的浏览器直接发给该服务商。',
       en: 'Open Settings, pick an AI provider and paste your API key. From then on every request goes straight from your browser to that provider.',
-      ja: '設定を開き、AI プロバイダーを選んで API Key を貼り付けます。以降のリクエストはブラウザから直接プロバイダーへ送られます。',
     },
   ];
 
   const facts = [
-    { zh: '永久免费 · 无需注册', en: 'Free forever · no sign-up', ja: '永久無料 · 登録不要' },
-    { zh: '数据只存在本地', en: 'Data stays on your device', ja: 'データはローカルのみ' },
-    { zh: '自带 API Key', en: 'Bring your own API key', ja: '自分の API Key を持ち込み' },
-    { zh: 'MIT 开源', en: 'MIT licensed', ja: 'MIT ライセンス' },
+    { zh: '永久免费 · 无需注册', en: 'Free forever · no sign-up' },
+    { zh: '数据只存在本地', en: 'Data stays on your device' },
+    { zh: '自带 API Key', en: 'Bring your own API key' },
+    { zh: 'MIT 开源', en: 'MIT licensed' },
   ];
 
   return (
@@ -62,12 +58,11 @@ function Download({ lang }) {
       <div style={{ width: '100%', maxWidth: 1100 }}>
         <SectionHead
           lang={lang}
-          eyebrow={L({ zh: '下载', en: 'Download', ja: 'ダウンロード' })}
-          title={L({ zh: '直接下载安装包.', en: 'Download the installer directly.', ja: 'インストーラーを直接ダウンロード。' })}
+          eyebrow={L({ zh: '下载', en: 'Download' })}
+          title={L({ zh: '直接下载安装包.', en: 'Download the installer directly.' })}
           sub={L({
             zh: '不经过任何应用商店 —— 下载 zip，加载到浏览器即可。',
             en: 'No store in between — grab the zip and load it into your browser.',
-            ja: 'ストアを経由しません — zip を取得してブラウザに読み込むだけ。',
           })}
           center
         />
@@ -146,10 +141,10 @@ function Download({ lang }) {
                   letterSpacing: '0.06em',
                 }}>{s.n}</span>
                 <div style={{ font: '600 14.5px var(--ln-font-brand)', color: '#0f2a1d' }}>
-                  {L({ zh: s.zh_t, en: s.en_t, ja: s.ja_t })}
+                  {L({ zh: s.zh_t, en: s.en_t})}
                 </div>
                 <p style={{ margin: 0, font: '13px/1.55 var(--ln-font-body)', color: 'var(--ln-fg3)' }}>
-                  {L({ zh: s.zh, en: s.en, ja: s.ja })}
+                  {L({ zh: s.zh, en: s.en})}
                 </p>
               </div>
             ))}
@@ -159,7 +154,6 @@ function Download({ lang }) {
             {L({
               zh: '以开发者模式加载的扩展不会自动更新。想获得新版本时，重新下载 zip 并覆盖原文件夹即可，本地数据不会丢失。',
               en: 'An unpacked extension does not auto-update. To get a newer version, download the zip again and replace the folder — your local data stays intact.',
-              ja: 'デベロッパーモードで読み込んだ拡張機能は自動更新されません。新しいバージョンを得るには zip を再ダウンロードしてフォルダを置き換えてください（ローカルデータは保持されます）。',
             })}
           </p>
         </div>

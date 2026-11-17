@@ -29,7 +29,6 @@ const MESSAGES = {
     language: 'Language',
     display_language: 'Display Language',
     display_language_hint: 'Controls the language of the extension UI',
-    auto_system: 'Auto (System)',
     ai_explanation_language: 'AI Explanation Language',
     ai_explanation_hint: 'AI will explain in this language regardless of the source text language',
     ai_summary_depth: 'AI Summary Depth',
@@ -308,7 +307,6 @@ const MESSAGES = {
     language: '语言',
     display_language: '界面语言',
     display_language_hint: '控制插件界面的显示语言',
-    auto_system: '自动（跟随系统）',
     ai_explanation_language: 'AI 解释语言',
     ai_explanation_hint: 'AI 将始终使用此语言进行解释，无论原文是什么语言',
     ai_summary_depth: 'AI 摘要深度',
@@ -574,154 +572,29 @@ const MESSAGES = {
     fetch_models:                '拉取',
   },
 
-  ja: {
-    settings: '設定',
-    ai_provider: 'AIプロバイダー',
-    provider: 'プロバイダー',
-    api_endpoint: 'APIエンドポイント',
-    endpoint_hint: 'OpenAI互換プロバイダー用（DeepSeek、Qwen、ローカル等）',
-    api_key: 'APIキー',
-    model: 'モデル',
-    test_connection: '接続テスト',
-    language: '言語',
-    display_language: '表示言語',
-    display_language_hint: '拡張機能のUI言語を設定',
-    auto_system: '自動（システム）',
-    ai_explanation_language: 'AI説明言語',
-    ai_explanation_hint: '原文の言語に関係なく、AIはこの言語で説明します',
-    ai_summary_depth: 'AI要約の深さ',
-    summary_depth_hint: 'カードのAIボタンのデフォルトの要約深度を制御',
-    brief: '簡潔',
-    detailed: '詳細',
-    deep: '詳しく',
-    keyboard_shortcut: 'キーボードショートカット',
-    shortcut_desc: '— 選択テキストのマークカードを開く',
-    shortcut_change_hint: 'ショートカットを変更するには',
-    save_settings: '設定を保存',
-    settings_saved: '✓ 設定を保存しました',
-    testing: 'テスト中…',
-    connected: '✓ 接続成功',
-    connection_failed: '✗ 接続失敗',
-    memory_library: 'メモリライブラリ',
-    my_memory_library: 'マイメモリライブラリ',
-    search_placeholder: 'マーク、ノート、要約を検索',
-    all: 'すべて',
-    copy_mcp_prompt: 'MCPセットアッププロンプトをコピー',
-    trash: 'ゴミ箱',
-    trash_meta: '{n} 件 · 15日後に自動削除',
-    trash_days_left: '残り{n}日',
-    trash_restore: '復元',
-    trash_perma_delete: '完全に削除',
-    trash_empty: 'ゴミ箱は空です',
-    trash_empty_all: 'ゴミ箱を空にする',
-    trash_empty_confirm: 'ゴミ箱を空にしますか？すべてのアイテムが完全に削除され、復元できなくなります。',
-    trash_deleted_at: '{date} に削除',
-    no_memories_in_month: '{month}にはまだメモリがありません。',
-    active_days_this_month: '今月のアクティブ日数',
-    active_days_in_month: '今月 {n} 日のアクティブ日。スタックをクリックしてその日を開きます。',
-    agent_title: 'LumiNote エージェント',
-    agent_placeholder: 'エージェントに質問…',
-    agent_cancel: 'キャンセル',
-    agent_confirm: '確認',
-    agent_confirm_delete_memory: 'メモリブロックを削除',
-    agent_confirm_delete_board: 'ムードボードを削除',
-    agent_confirm_action: '実行',
-    agent_error_config: 'AI設定の読み込みに失敗',
-    agent_error_no_key: 'APIキーが未設定です。LumiNote設定を開いてください。',
-    agent_error_no_tools: '現在のAIプロバイダーはツール呼び出しをサポートしていません。',
-    agent_error_loop: 'エージェントが最大ツール呼び出し回数に達しました。',
-    cancel: 'キャンセル',
-    confirm: '確認',
-    delete: '削除',
-    edit: '編集',
-    save: '保存',
-    close: '閉じる',
-    preview: 'プレビュー',
-  },
-
-  ko: {
-    settings: '설정',
-    ai_provider: 'AI 제공자',
-    provider: '제공자',
-    api_endpoint: 'API 엔드포인트',
-    endpoint_hint: 'OpenAI 호환 제공자용 (DeepSeek, Qwen, 로컬 등)',
-    api_key: 'API 키',
-    model: '모델',
-    test_connection: '연결 테스트',
-    language: '언어',
-    display_language: '표시 언어',
-    display_language_hint: '확장 프로그램 UI 언어 설정',
-    auto_system: '자동 (시스템)',
-    ai_explanation_language: 'AI 설명 언어',
-    ai_explanation_hint: '원문 언어에 관계없이 AI가 이 언어로 설명합니다',
-    ai_summary_depth: 'AI 요약 깊이',
-    summary_depth_hint: '카드 AI 버튼의 기본 요약 깊이를 제어합니다.',
-    brief: '간략',
-    detailed: '상세',
-    deep: '심층',
-    keyboard_shortcut: '키보드 단축키',
-    shortcut_desc: '— 선택한 텍스트의 마크 카드 열기',
-    shortcut_change_hint: '단축키를 변경하려면',
-    save_settings: '설정 저장',
-    settings_saved: '✓ 설정이 저장되었습니다',
-    testing: '테스트 중…',
-    connected: '✓ 연결됨',
-    connection_failed: '✗ 연결 실패',
-    memory_library: '메모리 라이브러리',
-    my_memory_library: '내 메모리 라이브러리',
-    search_placeholder: '마크, 노트, 요약 검색',
-    all: '전체',
-    copy_mcp_prompt: 'MCP 설정 프롬프트 복사',
-    trash: '휴지통',
-    trash_meta: '{n}개 항목 · 15일 후 자동 삭제',
-    trash_days_left: '{n}일 남음',
-    trash_restore: '복원',
-    trash_perma_delete: '영구 삭제',
-    trash_empty: '휴지통이 비어 있습니다',
-    trash_empty_all: '휴지통 비우기',
-    trash_empty_confirm: '휴지통을 비우시겠습니까? 모든 항목이 영구 삭제되며 복구할 수 없습니다.',
-    trash_deleted_at: '{date}에 삭제됨',
-    no_memories_in_month: '{month}에 저장된 메모리가 없습니다.',
-    active_days_this_month: '이번 달 활성 일수',
-    active_days_in_month: '이번 달 {n}일 활성. 스택을 클릭하여 해당 날짜를 엽니다.',
-    agent_title: 'LumiNote 에이전트',
-    agent_placeholder: '에이전트에게 질문하세요…',
-    agent_cancel: '취소',
-    agent_confirm: '확인',
-    agent_confirm_delete_memory: '메모리 블록 삭제',
-    agent_confirm_delete_board: '무드보드 삭제',
-    agent_confirm_action: '실행',
-    agent_error_config: 'AI 설정 로드 실패',
-    agent_error_no_key: 'API 키가 설정되지 않았습니다. LumiNote 설정을 열어주세요.',
-    agent_error_no_tools: '현재 AI 제공자가 도구 호출을 지원하지 않습니다.',
-    agent_error_loop: '에이전트가 최대 도구 호출 횟수에 도달했습니다.',
-    cancel: '취소',
-    confirm: '확인',
-    delete: '삭제',
-    edit: '편집',
-    save: '저장',
-    close: '닫기',
-    preview: '미리보기',
-  },
 };
 
-/** Resolve the effective locale: user pref → browser lang → 'en' */
+/** Resolve the effective locale: user pref → 'en' */
 let _locale = 'en';
 
+/**
+ * LumiNote ships two locales. English is the default for everyone; Chinese is
+ * opt-in from Settings. We deliberately do not auto-switch on navigator.language
+ * so the UI a fresh install shows is always the same.
+ */
 function detectSystemLocale() {
-  const lang = (navigator.language || 'en').toLowerCase();
-  if (lang.startsWith('zh')) return 'zh';
-  // All other languages default to English for beta (only en + zh active)
   return 'en';
 }
 
-/** Load saved displayLanguage from storage, fallback to system detection */
+/**
+ * Load the saved displayLanguage. Defaults to English; a previously stored
+ * 'auto' (from older builds) also resolves to English so nobody is left with an
+ * unknown locale.
+ */
 export async function initLocale() {
   return new Promise((resolve) => {
-    chrome.storage.sync.get({ displayLanguage: 'auto' }, (cfg) => {
-      _locale = cfg.displayLanguage === 'auto'
-        ? detectSystemLocale()
-        : (MESSAGES[cfg.displayLanguage] ? cfg.displayLanguage : detectSystemLocale());
+    chrome.storage.sync.get({ displayLanguage: 'en' }, (cfg) => {
+      _locale = MESSAGES[cfg.displayLanguage] ? cfg.displayLanguage : detectSystemLocale();
       resolve(_locale);
     });
   });

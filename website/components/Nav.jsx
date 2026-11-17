@@ -69,7 +69,7 @@ function Nav({ lang, setLang }) {
         {isMobile && <div style={{ flex: 1 }}/>}
         <LangToggle lang={lang} setLang={setLang} />
 
-        <a href="https://github.com/Chris00312/luminote/releases/latest" target="_blank" rel="noopener" title={lang === 'zh' ? '下载安装包' : lang === 'ja' ? 'インストーラーをダウンロード' : 'Download installer'} style={{
+        <a href="https://github.com/Chris00312/luminote/releases/latest" target="_blank" rel="noopener" title={lang === 'zh' ? '下载安装包' : 'Download installer'} style={{
           display: 'inline-flex', alignItems: 'center', gap: isMobile ? 0 : 7,
           padding: isMobile ? '9px 11px' : '9px 16px', borderRadius: 9999,
           background: 'var(--accent-gradient)',
@@ -96,7 +96,7 @@ function LangToggle({ lang, setLang }) {
       display: 'inline-flex', padding: 3, borderRadius: 9999,
       background: 'rgba(26,107,74,0.07)',
     }}>
-      {['zh', 'en', 'ja'].map(l => (
+      {['en', 'zh'].map(l => (
         <button key={l} onClick={() => setLang(l)} style={{
           padding: '5px 11px', borderRadius: 9999, border: 'none',
           background: lang === l ? '#fff' : 'transparent',
@@ -105,7 +105,7 @@ function LangToggle({ lang, setLang }) {
           letterSpacing: '0.04em',
           cursor: 'pointer',
           boxShadow: lang === l ? '0 1px 3px rgba(10,30,18,0.1)' : 'none',
-        }}>{l === 'zh' ? '中' : l === 'ja' ? '日' : 'EN'}</button>
+        }}>{l === 'zh' ? '中' : 'EN'}</button>
       ))}
     </div>
   );
