@@ -1,0 +1,45 @@
+/* Shared base for preview cards. Each card is a self-contained 700-wide HTML file. */
+@import url('../colors_and_type.css');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: var(--ln-font-body);
+  color: var(--ln-fg1);
+  background: var(--ln-bg-app);
+  width: 700px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.row { display: flex; gap: 12px; align-items: stretch; }
+.col { display: flex; flex-direction: column; gap: 8px; }
+.spread { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+
+.label-eyebrow {
+  font: var(--ln-t-label-sm);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ln-fg4);
+}
+
+.tok {
+  font-family: var(--ln-font-mono);
+  font-size: 11px;
+  color: var(--ln-fg3);
+  background: rgba(64, 73, 67, 0.06);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.note {
+  font: var(--ln-t-body-sm);
+  color: var(--ln-fg3);
+}

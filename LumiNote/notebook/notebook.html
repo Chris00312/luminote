@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>LumiNote — Memory Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/md3-tokens.css">
+  <link rel="stylesheet" href="notebook.css">
+  <link rel="stylesheet" href="agent-chat.css">
+</head>
+<body>
+  <div class="nb-layout">
+
+    <!-- Sidebar -->
+    <aside class="nb-sidebar">
+      <div class="nb-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17l10 5 10-5" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12l10 5 10-5" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+        <span>LumiNote</span>
+      </div>
+
+      <nav class="nb-nav">
+        <button class="nb-nav-item nb-nav-item--active" id="nav-memory" data-view="memory" type="button" aria-current="page">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span data-i18n="memory_library">Memory Library</span>
+        </button>
+        <button class="nb-nav-item" id="nav-openclaw" data-view="openclaw" type="button">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Antennae with circles -->
+            <path d="M13 9C11.5 6.5 9.5 5 8.5 4"/>
+            <circle cx="8" cy="3.5" r="1.5"/>
+            <path d="M19 9C20.5 6.5 22.5 5 23.5 4"/>
+            <circle cx="24" cy="3.5" r="1.5"/>
+            <!-- Left claw arm -->
+            <path d="M10.5 11C8.5 9.5 6.5 9 5.5 9.5"/>
+            <!-- Left claw -->
+            <path d="M5.5 9.5C4 9 2.5 10 2.5 11.5C2.5 13 4 13.5 5.5 12.5C5.5 12.5 6 11.5 5.5 10.5"/>
+            <!-- Right claw arm -->
+            <path d="M21.5 11C23.5 9.5 25.5 9 26.5 9.5"/>
+            <!-- Right claw -->
+            <path d="M26.5 9.5C28 9 29.5 10 29.5 11.5C29.5 13 28 13.5 26.5 12.5C26.5 12.5 26 11.5 26.5 10.5"/>
+            <!-- Body (oval) -->
+            <ellipse cx="16" cy="16" rx="6" ry="8"/>
+            <!-- Legs left -->
+            <path d="M10.5 14L7 16M10.5 16.5L7 18.5M10.5 19L7.5 21"/>
+            <!-- Legs right -->
+            <path d="M21.5 14L25 16M21.5 16.5L25 18.5M21.5 19L24.5 21"/>
+            <!-- Tail fan -->
+            <path d="M13 24C12 26 11 27.5 12.5 28.5C14 29.5 15.5 28.5 16 27C16.5 28.5 18 29.5 19.5 28.5C21 27.5 20 26 19 24"/>
+          </svg>
+          <span data-i18n="openclaw">OpenClaw</span>
+        </button>
+        <button class="nb-nav-item" id="nav-settings" data-view="settings" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span data-i18n="settings">Settings</span>
+        </button>
+
+        <div class="nb-nav-divider"></div>
+
+        <button class="nb-nav-item nb-nav-item--trash" id="nav-trash" data-view="trash" type="button">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6l-1 14H6L5 6"/>
+            <path d="M10 11v6M14 11v6"/>
+            <path d="M9 6V4h6v2"/>
+          </svg>
+          <span data-i18n="trash">回收站</span>
+          <span class="nb-trash-count" id="nav-trash-count" style="display:none"></span>
+        </button>
+      </nav>
+
+      <div class="nb-stats">
+        <button class="nb-stat-card nb-stat-card--active" id="stat-card-today" type="button">
+          <div class="nb-stat-card__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </div>
+          <div class="nb-stat-card__info">
+            <div class="nb-stat-card__name" data-i18n="today">Today</div>
+            <div class="nb-stat-card__meta"><span id="stat-today">0</span> <span data-i18n="marks_saved_today">marks saved today</span></div>
+          </div>
+        </button>
+        <button class="nb-stat-card" id="stat-card-calendar" type="button">
+          <div class="nb-stat-card__icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div class="nb-stat-card__info">
+            <div class="nb-stat-card__name" data-i18n="calendar">Calendar</div>
+            <div class="nb-stat-card__meta"><span id="stat-calendar">0</span> <span id="stat-calendar-label" data-i18n="active_days_this_month">active days this month</span></div>
+          </div>
+        </button>
+        <!-- Moodboard sessions (inline Albums) -->
+        <div class="nb-sidebar-boards" id="nb-sidebar-boards">
+          <div class="nb-sidebar-boards__header">
+            <span class="nb-sidebar-boards__title" data-i18n="sidebar_boards">灵感板</span>
+            <button class="nb-sidebar-boards__new-btn" id="mb-new-session-btn" type="button" title="New Board">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="mb-sessions-list" id="mb-sessions-list">
+            <!-- session cards injected here -->
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Main -->
+    <main class="nb-main">
+
+      <!-- Top bar -->
+      <div class="nb-topbar">
+        <h1 class="nb-page-title" id="nb-page-title" data-i18n="my_memory_library">My Memory Library</h1>
+        <div class="nb-search-wrapper" id="nb-search-wrapper">
+          <svg class="nb-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            id="search-input"
+            class="nb-search-input"
+            data-i18n-placeholder="search_placeholder"
+            placeholder="Search marks, notes, summaries…"
+            autocomplete="off"
+          >
+          <button id="clear-search" class="nb-clear-btn" style="display:none" aria-label="Clear">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="memory-view">
+        <!-- Search result label -->
+        <div id="search-label" class="nb-search-label" style="display:none"></div>
+
+        <!-- Entry area -->
+        <div id="nb-content" class="nb-content">
+          <!-- date groups injected here -->
+        </div>
+
+        <!-- Empty state -->
+        <div id="empty-state" class="nb-empty" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#c0c9c2" stroke-width="1.2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+          <p data-i18n="no_marks_notebook">No marks yet.</p>
+          <p class="nb-empty-hint" data-i18n="no_marks_notebook_hint">Select any text on a webpage and click <strong>Mark</strong> to start building your memory library.</p>
+        </div>
+
+        <!-- No search results -->
+        <div id="no-results" class="nb-empty" style="display:none">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c0c9c2" stroke-width="1.2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <p data-i18n="no_results">No results found.</p>
+        </div>
+      </div>
+
+      <!-- Moodboard view -->
+      <div id="moodboard-view" style="display:none">
+        <!-- Board title bar -->
+        <div class="mb-board-bar" id="mb-board-bar" style="display:none">
+          <span class="mb-board-name" id="mb-board-name"></span>
+          <button class="mb-board-rename-btn" id="mb-board-rename-btn" type="button" title="Rename board">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+            </svg>
+          </button>
+          <div style="flex:1"></div>
+          <button class="mb-board-action-btn" id="mb-create-note-btn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            <span data-i18n="mb_new_note">New Note</span>
+          </button>
+          <button class="mb-board-action-btn" id="mb-export-png-btn" type="button" title="Export as PNG">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>PNG</span>
+          </button>
+        </div>
+
+        <div class="mb-viewport" id="mb-viewport">
+          <div class="mb-canvas" id="mb-canvas"></div>
+        </div>
+
+        <!-- Blueprint search popup -->
+        <div class="mb-search-popup" id="mb-search-popup" style="display:none">
+          <input type="text" class="mb-search-input" id="mb-search-input" placeholder="Search memories..." autocomplete="off">
+          <div class="mb-search-results" id="mb-search-results"></div>
+        </div>
+
+        <!-- Zoom indicator -->
+        <div class="mb-zoom-controls" id="mb-zoom-controls">
+          <button class="mb-zoom-btn" id="mb-zoom-out" type="button" title="Zoom out">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <span class="mb-zoom-value" id="mb-zoom-indicator">100%</span>
+          <button class="mb-zoom-btn" id="mb-zoom-in" type="button" title="Zoom in">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+
+        <!-- Empty state -->
+        <div class="mb-empty-hint" id="mb-empty-hint">
+          <p data-i18n="mb_empty_hint">Press <kbd>C</kbd> to search and add memory cards</p>
+        </div>
+
+        <!-- Image lightbox -->
+        <div class="mb-lightbox" id="mb-lightbox" style="display:none">
+          <div class="mb-lightbox__backdrop" id="mb-lightbox-backdrop"></div>
+          <img class="mb-lightbox__img" id="mb-lightbox-img" src="" alt="">
+          <button class="mb-lightbox__close" id="mb-lightbox-close" type="button" title="Close (Esc)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="openclaw-view" class="oc-view" style="display:none">
+        <div class="oc-hero">
+          <div>
+            <div class="oc-chip" data-i18n="oc_mcp_bridge">MCP Bridge</div>
+            <h2 class="oc-title" data-i18n="oc_connect_title">Connect AI Agents to LumiNote</h2>
+            <p class="oc-lead" data-i18n="oc_connect_lead">LumiNote is a shared data center for humans and AI. You mark memories from the browser; AI agents read and write the same Memory Blocks via MCP (Model Context Protocol) to search, create, update, and resume from the exact web or PDF location.</p>
+          </div>
+          <button id="oc-copy-all-btn" class="oc-copy-all-btn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span data-i18n="copy_mcp_prompt">Copy MCP setup prompt</span>
+          </button>
+        </div>
+
+        <section class="oc-section">
+          <h3 class="oc-section-title" data-i18n="oc_what_is_title">What is MCP + LumiNote</h3>
+          <p class="oc-body" data-i18n="oc_what_is_body">LumiNote is the shared data layer. Humans mark memories from the browser; AI agents read and write the same Memory Blocks through MCP. Both sides operate on an identical schema — there is no separate human format or agent format.</p>
+        </section>
+
+        <section class="oc-section">
+          <h3 class="oc-section-title" data-i18n="oc_how_to_connect">How to connect</h3>
+          <p class="oc-body" data-i18n="oc_how_to_connect_body">Install the <strong>luminote-mcp-server</strong> to bridge any MCP-compatible AI agent (Claude, OpenClaw, etc.) to this extension. The MCP server communicates with LumiNote through a local WebSocket bridge.</p>
+
+          <div class="oc-install-steps">
+            <div class="oc-step">
+              <span class="oc-step-num">1</span>
+              <div>
+                <div class="oc-step-head">
+                  <strong data-i18n="oc_step1_title">Install the MCP server</strong>
+                  <button class="oc-copy-btn oc-copy-btn--inline" type="button" data-copy-target="oc-install-cmd" data-i18n="copy">Copy</button>
+                </div>
+                <pre class="oc-code oc-code--inline"><code id="oc-install-cmd">npm install -g luminote-mcp-server</code></pre>
+              </div>
+            </div>
+            <div class="oc-step">
+              <span class="oc-step-num">2</span>
+              <div>
+                <div class="oc-step-head">
+                  <strong data-i18n="oc_step2_title">Add to your AI agent config</strong>
+                  <button class="oc-copy-btn oc-copy-btn--inline" type="button" data-copy-target="oc-mcp-config" data-i18n="copy">Copy</button>
+                </div>
+                <pre class="oc-code oc-code--inline"><code id="oc-mcp-config">{
+  "mcpServers": {
+    "luminote": {
+      "command": "npx",
+      "args": ["-y", "luminote-mcp-server"]
+    }
+  }
+}</code></pre>
+              </div>
+            </div>
+            <div class="oc-step">
+              <span class="oc-step-num">3</span>
+              <div>
+                <strong data-i18n="oc_step3_title">Keep this page open</strong>
+                <p class="oc-caption" data-i18n="oc_step3_desc">The extension auto-connects to the MCP server's WebSocket bridge. This page must be open for the bridge to stay alive.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="oc-mcp-status" id="oc-mcp-status">
+            <span class="oc-status-dot" id="oc-mcp-dot"></span>
+            <span id="oc-mcp-status-text" data-i18n="oc_mcp_checking">Checking MCP bridge…</span>
+          </div>
+
+          <div class="oc-callout">
+            <strong data-i18n="oc_alt_method">Alternative: manual handoff</strong>
+            <span data-i18n="oc_alt_method_desc">Click <strong>Copy MCP setup prompt</strong> above to copy the full installation guide and API reference as plain text, then paste it into any AI chat to let the agent set up the MCP connection.</span>
+          </div>
+        </section>
+
+        <section class="oc-section">
+          <div class="oc-section-head">
+            <h3 class="oc-section-title" data-i18n="oc_write_api">Write API — OpenClaw → LumiNote</h3>
+            <p class="oc-caption" data-i18n="oc_write_api_desc">OpenClaw can create and manage Memory Blocks using the same schema.</p>
+          </div>
+
+          <div class="oc-command-list">
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4 data-i18n="oc_create_memory">Create a memory</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-create" data-i18n="copy">Copy</button>
+              </div>
+              <p class="oc-caption" data-i18n="oc_create_memory_desc">Add a new Memory Block. <code>id</code> is auto-generated if omitted.</p>
+              <pre class="oc-code"><code id="oc-command-create">chrome.runtime.sendMessage({
+  type: "CREATE_MEMORY",
+  block: {
+    "term": "Attention Is All You Need",
+    "entryType": "text",
+    "sourceKind": "web",
+    "sourceUrl": "https://arxiv.org/abs/1706.03762",
+    "sourceTitle": "Attention Is All You Need — arXiv",
+    "note": "Foundational transformer paper.",
+    "aiSummary": "Introduces the Transformer model.",
+    "context": "We propose a new simple network architecture...",
+    "tags": ["transformers", "attention"]
+  }
+}, response => console.log(response))
+// → { ok: true, id: "lr_1744027620000_abc1234" }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4 data-i18n="oc_update_memory">Update a memory</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-update" data-i18n="copy">Copy</button>
+              </div>
+              <p class="oc-caption" data-i18n="oc_update_memory_desc">Patch <code>note</code>, <code>aiSummary</code>, or <code>tags</code> on an existing block.</p>
+              <pre class="oc-code"><code id="oc-command-update">chrome.runtime.sendMessage({
+  type: "UPDATE_MEMORY",
+  id: "lr_1234567890_abc1234",
+  fields: {
+    "note": "Revised: also relevant for vision transformers (ViT).",
+    "tags": ["transformers", "attention", "deep-learning", "vision"]
+  }
+}, response => console.log(response))
+// → { ok: true }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4 data-i18n="oc_delete_memory">Delete a memory</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-delete" data-i18n="copy">Copy</button>
+              </div>
+              <p class="oc-caption" data-i18n="oc_delete_memory_desc">Permanently remove a Memory Block from the library.</p>
+              <pre class="oc-code"><code id="oc-command-delete">chrome.runtime.sendMessage({
+  type: "DELETE_MEMORY",
+  id: "lr_1234567890_abc1234"
+}, response => console.log(response))
+// → { ok: true }</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="oc-section">
+          <div class="oc-section-head">
+            <h3 class="oc-section-title" data-i18n="oc_read_api">Read API — OpenClaw ← LumiNote</h3>
+            <p class="oc-caption" data-i18n="oc_read_api_desc">Command templates for read access.</p>
+          </div>
+
+          <div class="oc-command-list">
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4 data-i18n="oc_search_memories">Search memories</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-search" data-i18n="copy">Copy</button>
+              </div>
+              <p class="oc-caption" data-i18n="oc_search_memories_desc">Find Memory Blocks by term, note content, source kind, or domain.</p>
+              <pre class="oc-code"><code id="oc-command-search">chrome.runtime.sendMessage({
+  type: "SEARCH_MEMORIES",
+  query: "transformer",
+  filters: { sourceKind: "web", limit: 10 }
+}, response => console.log(response))
+// → { ok: true, results: [...], total: 3 }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4 data-i18n="oc_read_one">Read one memory</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-get" data-i18n="copy">Copy</button>
+              </div>
+              <p class="oc-caption" data-i18n="oc_read_one_desc">Retrieve the full Memory Block including note, AI summary, anchor, and locator.</p>
+              <pre class="oc-code"><code id="oc-command-get">chrome.runtime.sendMessage({
+  type: "GET_MEMORY",
+  id: "lr_1234567890_abc1234"
+}, response => console.log(response))
+// → { ok: true, memory: { id, term, note, ... } }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4 data-i18n="oc_open_source">Open original source</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-open" data-i18n="copy">Copy</button>
+              </div>
+              <p class="oc-caption" data-i18n="oc_open_source_desc">Reopen the saved page or PDF at the saved page number.</p>
+              <pre class="oc-code"><code id="oc-command-open">chrome.runtime.sendMessage({
+  type: "OPEN_MEMORY",
+  id: "lr_1234567890_abc1234"
+}, response => console.log(response))
+// → { ok: true, sourceUrl, sourceTitle, ... }
+// Also opens the source in a new tab</code></pre>
+            </article>
+
+          </div>
+        </section>
+
+        <section class="oc-section">
+          <div class="oc-section-head">
+            <h3 class="oc-section-title">Moodboard API — OpenClaw ↔ 灵感板</h3>
+            <p class="oc-caption">AI agents can read, create, and manage Moodboard sessions (infinite canvas boards) and place Memory Blocks as spatial cards.</p>
+          </div>
+
+          <div class="oc-command-list">
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4>List sessions</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-mb-list">Copy</button>
+              </div>
+              <p class="oc-caption">List all Moodboard sessions with name, timestamps, and card count.</p>
+              <pre class="oc-code"><code id="oc-command-mb-list">chrome.runtime.sendMessage({
+  type: "LIST_MOODBOARD_SESSIONS"
+}, response => console.log(response))
+// → { ok: true, sessions: [{ id, name, createdAt, updatedAt, cardCount }] }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4>Get session details</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-mb-get">Copy</button>
+              </div>
+              <p class="oc-caption">Retrieve full session including all cards with their associated Memory Block data.</p>
+              <pre class="oc-code"><code id="oc-command-mb-get">chrome.runtime.sendMessage({
+  type: "GET_MOODBOARD_SESSION",
+  id: "mb_1706000000000_xyz9876"
+}, response => console.log(response))
+// → { ok: true, session: { id, name, viewport, cards: [{ cardId, entryId, x, y, entry: {...} }] } }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4>Create session</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-mb-create">Copy</button>
+              </div>
+              <p class="oc-caption">Create a new empty Moodboard with an optional name.</p>
+              <pre class="oc-code"><code id="oc-command-mb-create">chrome.runtime.sendMessage({
+  type: "CREATE_MOODBOARD_SESSION",
+  name: "Research: Transformer Papers"
+}, response => console.log(response))
+// → { ok: true, session: { id: "mb_...", name, cards: [], ... } }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4>Update session</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-mb-update">Copy</button>
+              </div>
+              <p class="oc-caption">Rename a board or update its viewport (pan/zoom state).</p>
+              <pre class="oc-code"><code id="oc-command-mb-update">chrome.runtime.sendMessage({
+  type: "UPDATE_MOODBOARD_SESSION",
+  id: "mb_1706000000000_xyz9876",
+  fields: { name: "Renamed Board" }
+}, response => console.log(response))
+// → { ok: true }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4>Delete session</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-mb-delete">Copy</button>
+              </div>
+              <p class="oc-caption">Permanently delete a Moodboard session and all card placements.</p>
+              <pre class="oc-code"><code id="oc-command-mb-delete">chrome.runtime.sendMessage({
+  type: "DELETE_MOODBOARD_SESSION",
+  id: "mb_1706000000000_xyz9876"
+}, response => console.log(response))
+// → { ok: true }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4>Add card to board</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-mb-add-card">Copy</button>
+              </div>
+              <p class="oc-caption">Place a Memory Block on the canvas at a specific position.</p>
+              <pre class="oc-code"><code id="oc-command-mb-add-card">chrome.runtime.sendMessage({
+  type: "ADD_MOODBOARD_CARD",
+  sessionId: "mb_1706000000000_xyz9876",
+  entryId: "lr_1234567890_abc1234",
+  x: 200,
+  y: 150
+}, response => console.log(response))
+// → { ok: true, card: { cardId: "mbc_...", entryId, x, y } }</code></pre>
+            </article>
+
+            <article class="oc-command-card">
+              <div class="oc-command-head">
+                <h4>Remove card from board</h4>
+                <button class="oc-copy-btn" type="button" data-copy-target="oc-command-mb-remove-card">Copy</button>
+              </div>
+              <p class="oc-caption">Remove a card placement (does not delete the underlying Memory Block).</p>
+              <pre class="oc-code"><code id="oc-command-mb-remove-card">chrome.runtime.sendMessage({
+  type: "REMOVE_MOODBOARD_CARD",
+  sessionId: "mb_1706000000000_xyz9876",
+  cardId: "mbc_1706000001000_abc1234"
+}, response => console.log(response))
+// → { ok: true }</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="oc-section">
+          <div class="oc-section-head">
+            <h3 class="oc-section-title" data-i18n="oc_message_api">Message API</h3>
+            <p class="oc-caption" data-i18n="oc_message_api_desc">All APIs are available via <code>chrome.runtime.sendMessage()</code>. Use the message type as the <code>type</code> field.</p>
+          </div>
+
+          <div class="oc-api-list">
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>CREATE_MEMORY</h4>
+                <span class="oc-status oc-status--write">Write</span>
+              </div>
+              <p class="oc-body" data-i18n="oc_api_create_desc">Add a new Memory Block following the LumiNote schema. <code>id</code> and <code>timestamp</code> are auto-generated. All other fields follow the same schema used by human marks.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>UPDATE_MEMORY</h4>
+                <span class="oc-status oc-status--write">Write</span>
+              </div>
+              <p class="oc-body" data-i18n="oc_api_update_desc">Patch mutable fields: <code>term</code>, <code>note</code>, <code>aiSummary</code>, <code>tags</code>. Immutable fields (<code>sourceUrl</code>, <code>sourceAnchor</code>, <code>timestamp</code>) are ignored.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>DELETE_MEMORY</h4>
+                <span class="oc-status oc-status--write">Write</span>
+              </div>
+              <p class="oc-body" data-i18n="oc_api_delete_desc">Permanently remove a Memory Block. Reflected immediately in the human-facing Memory Library.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>SEARCH_MEMORIES</h4>
+                <span class="oc-status">Read</span>
+              </div>
+              <p class="oc-body" data-i18n="oc_api_search_desc">Search across <code>term</code>, <code>note</code>, <code>aiSummary</code>, and <code>context</code>. Filter by <code>sourceKind</code>, <code>entryType</code>, <code>domain</code>, or date range.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>GET_MEMORY</h4>
+                <span class="oc-status">Read</span>
+              </div>
+              <p class="oc-body" data-i18n="oc_api_get_desc">Return the full Memory Block: <code>note</code>, <code>aiSummary</code>, <code>sourceAnchor</code>, <code>sourceLocator</code>, and image metadata where applicable.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>OPEN_MEMORY</h4>
+                <span class="oc-status">Read</span>
+              </div>
+              <p class="oc-body" data-i18n="oc_api_open_desc">Return <code>sourceUrl</code>, <code>sourceTitle</code>, <code>sourcePage</code> (PDF), and resume metadata. Opens the source in a new tab.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>LIST_MOODBOARD_SESSIONS</h4>
+                <span class="oc-status">Read</span>
+              </div>
+              <p class="oc-body">List all Moodboard sessions. Returns <code>id</code>, <code>name</code>, <code>createdAt</code>, <code>updatedAt</code>, and <code>cardCount</code>.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>GET_MOODBOARD_SESSION</h4>
+                <span class="oc-status">Read</span>
+              </div>
+              <p class="oc-body">Retrieve full session with all cards enriched with their Memory Block data (<code>term</code>, <code>note</code>, <code>aiSummary</code>, etc.).</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>CREATE_MOODBOARD_SESSION</h4>
+                <span class="oc-status oc-status--write">Write</span>
+              </div>
+              <p class="oc-body">Create a new empty Moodboard session. Accepts optional <code>name</code> field.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>UPDATE_MOODBOARD_SESSION</h4>
+                <span class="oc-status oc-status--write">Write</span>
+              </div>
+              <p class="oc-body">Update session <code>name</code> or <code>viewport</code> (pan/zoom). Requires <code>id</code> and <code>fields</code> object.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>DELETE_MOODBOARD_SESSION</h4>
+                <span class="oc-status oc-status--write">Write</span>
+              </div>
+              <p class="oc-body">Permanently delete a Moodboard session and all its card placements.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>ADD_MOODBOARD_CARD</h4>
+                <span class="oc-status oc-status--write">Write</span>
+              </div>
+              <p class="oc-body">Place a Memory Block on a Moodboard canvas. Requires <code>sessionId</code>, <code>entryId</code>, and optional <code>x</code>/<code>y</code> coordinates.</p>
+            </article>
+
+            <article class="oc-api-card">
+              <div class="oc-api-head">
+                <h4>REMOVE_MOODBOARD_CARD</h4>
+                <span class="oc-status oc-status--write">Write</span>
+              </div>
+              <p class="oc-body">Remove a card from a Moodboard session. Does not delete the underlying Memory Block.</p>
+            </article>
+          </div>
+
+          <div class="oc-section-head oc-section-head--spaced">
+            <h3 class="oc-section-title" data-i18n="oc_memory_schema">Memory Block Schema</h3>
+            <button class="oc-copy-btn" type="button" data-copy-target="oc-memory-json" data-i18n="copy_json">Copy JSON</button>
+          </div>
+          <pre class="oc-code oc-code--large"><code id="oc-memory-json">{
+  "id": "lr_1234567890_abc1234",
+  "term": "Transformer architecture",
+  "entryType": "text",
+  "sourceKind": "web",
+  "sourceUrl": "https://example.com/article",
+  "sourceUrlNormalized": "example.com/article",
+  "sourceTitle": "Attention Is All You Need",
+  "context": "The surrounding paragraph captured at mark time.",
+  "note": "Human-written note saved at mark time.",
+  "aiSummary": "Optional AI-generated explanation (blank if not triggered).",
+  "explanation": "(legacy field — same as aiSummary in older entries)",
+  "timestamp": 1744027620000,
+  "tags": [],
+  "sourceAnchor": {
+    "quote": "Transformer architecture",
+    "prefix": "The paper introduced the",
+    "suffix": "which replaces recurrence",
+    "contextSnippet": "The paper introduced the Transformer architecture which replaces recurrence"
+  },
+  "sourceLocator": {
+    "blockPath": "main > article > p:nth-child(3)",
+    "blockOffset": 12
+  }
+}</code></pre>
+
+          <div class="oc-section-head oc-section-head--spaced">
+            <h3 class="oc-section-title" data-i18n="oc_pdf_schema">PDF Memory Block</h3>
+            <button class="oc-copy-btn" type="button" data-copy-target="oc-pdf-json" data-i18n="copy_json">Copy JSON</button>
+          </div>
+          <pre class="oc-code oc-code--large"><code id="oc-pdf-json">{
+  "id": "lr_1234567891_def5678",
+  "term": "Attention mechanism",
+  "entryType": "text",
+  "sourceKind": "pdf",
+  "sourceUrl": "https://arxiv.org/pdf/1706.03762",
+  "sourceTitle": "Attention Is All You Need",
+  "sourceName": "1706.03762.pdf",
+  "sourcePage": 4,
+  "note": "Key equation on page 4.",
+  "aiSummary": "",
+  "context": "Captured paragraph from the PDF text layer.",
+  "timestamp": 1744027680000,
+  "tags": [],
+  "sourceAnchor": {
+    "quote": "Attention mechanism",
+    "prefix": "We call our",
+    "suffix": "Scaled Dot-Product Attention"
+  },
+  "sourceLocator": {
+    "pageTextOffset": 312
+  }
+}</code></pre>
+
+          <div class="oc-section-head oc-section-head--spaced">
+            <h3 class="oc-section-title" data-i18n="oc_image_schema">Image Memory Block</h3>
+            <button class="oc-copy-btn" type="button" data-copy-target="oc-image-json" data-i18n="copy_json">Copy JSON</button>
+          </div>
+          <pre class="oc-code oc-code--large"><code id="oc-image-json">{
+  "id": "lr_1234567892_ghi9012",
+  "term": "Architecture diagram",
+  "entryType": "image",
+  "sourceKind": "web",
+  "sourceUrl": "https://example.com/blog/post",
+  "sourceTitle": "Blog post title",
+  "imageUrl": "https://example.com/images/diagram.png",
+  "imageAlt": "System architecture overview",
+  "note": "Reference for the encoder-decoder pattern.",
+  "aiSummary": "",
+  "timestamp": 1744027740000,
+  "tags": []
+}</code></pre>
+        </section>
+      </div>
+
+      <div id="settings-view" class="settings-view" style="display:none">
+        <iframe
+          id="settings-frame"
+          class="settings-frame"
+          title="LumiNote Settings"
+          scrolling="no"
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <!-- Trash view -->
+      <div id="trash-view" style="display:none">
+        <div class="nb-trash-topbar">
+          <p class="nb-trash-meta" id="trash-meta"></p>
+          <button id="btn-empty-trash" class="nb-muted-btn" style="display:none">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14H6L5 6"/>
+            </svg>
+            <span data-i18n="trash_empty_all">清空回收站</span>
+          </button>
+        </div>
+        <div id="trash-list" class="nb-cards"></div>
+        <div id="trash-empty-state" class="nb-empty-state" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.3">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6l-1 14H6L5 6"/>
+            <path d="M10 11v6M14 11v6"/>
+            <path d="M9 6V4h6v2"/>
+          </svg>
+          <p data-i18n="trash_empty">回收站是空的</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Create Note dialog -->
+  <dialog id="create-note-dialog" class="cn-dialog" aria-labelledby="cn-dialog-title">
+    <div class="cn-card">
+      <div class="cn-header">
+        <div class="cn-logo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          <span id="cn-dialog-title" data-i18n="new_note">New Note</span>
+        </div>
+        <button id="cn-close" class="cn-close-btn" type="button" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <input
+        id="cn-title"
+        class="cn-title-input"
+        type="text"
+        data-i18n-placeholder="title_optional"
+        placeholder="Title (optional)"
+        autocomplete="off"
+        maxlength="200"
+      >
+
+      <!-- Image slot -->
+      <div class="em-image-section">
+        <div id="cn-image-filled" class="em-image-filled" style="display:none">
+          <img id="cn-image" class="em-image-preview" src="" alt="">
+          <div class="em-image-actions">
+            <button id="cn-image-replace" class="em-image-action-btn" type="button" title="Replace image">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span data-i18n="em_replace_image">Replace</span>
+            </button>
+            <button id="cn-image-remove" class="em-image-action-btn em-image-action-btn--danger" type="button" title="Remove image">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+              <span data-i18n="em_remove_image">Remove</span>
+            </button>
+          </div>
+        </div>
+        <button id="cn-image-empty" class="em-image-empty-slot" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <span data-i18n="em_add_image">Add image</span>
+        </button>
+        <input id="cn-image-file" type="file" accept="image/*" style="display:none">
+      </div>
+
+      <div class="cn-note-section">
+        <label class="cn-note-label" for="cn-note" data-i18n="note">Note</label>
+        <textarea
+          id="cn-note"
+          class="cn-note-textarea"
+          data-i18n-placeholder="note_placeholder"
+          placeholder="Write why this matters, what to revisit, or leave a quick snapshot note..."
+          rows="10"
+        ></textarea>
+      </div>
+
+      <div class="cn-footer">
+        <button id="cn-save" class="cn-save-btn" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span data-i18n="save">Save</span>
+        </button>
+        <span class="cn-source-hint" data-i18n="saved_to_memory">Saved to Memory Library</span>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Edit Memory dialog -->
+  <dialog id="edit-memory-dialog" class="cn-dialog" aria-labelledby="em-dialog-title">
+    <div class="cn-card">
+      <div class="cn-header">
+        <div class="cn-logo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          <span id="em-dialog-title" data-i18n="edit_memory">Edit Memory</span>
+        </div>
+        <button id="em-close" class="cn-close-btn" type="button" aria-label="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <input
+        id="em-title"
+        class="cn-title-input"
+        type="text"
+        data-i18n-placeholder="title"
+        placeholder="Title"
+        autocomplete="off"
+        maxlength="200"
+      >
+
+      <!-- Image slot (always visible) -->
+      <div id="em-image-section" class="em-image-section">
+        <!-- Has image state -->
+        <div id="em-image-filled" class="em-image-filled" style="display:none">
+          <img id="em-image" class="em-image-preview" src="" alt="">
+          <div class="em-image-actions">
+            <button id="em-image-replace" class="em-image-action-btn" type="button" title="Replace image">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span data-i18n="em_replace_image">Replace</span>
+            </button>
+            <button id="em-image-remove" class="em-image-action-btn em-image-action-btn--danger" type="button" title="Remove image">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+              <span data-i18n="em_remove_image">Remove</span>
+            </button>
+          </div>
+        </div>
+        <!-- Empty state -->
+        <button id="em-image-empty" class="em-image-empty-slot" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span data-i18n="em_add_image">Add image</span>
+        </button>
+        <input id="em-image-file" type="file" accept="image/*" style="display:none">
+      </div>
+
+      <div class="cn-note-section">
+        <label class="cn-note-label" for="em-note" data-i18n="note">Note</label>
+        <textarea
+          id="em-note"
+          class="cn-note-textarea"
+          data-i18n-placeholder="note_placeholder"
+          placeholder="Write why this matters, what to revisit, or leave a quick snapshot note..."
+          rows="10"
+        ></textarea>
+      </div>
+
+      <div class="em-source-row" id="em-source-row" style="display:none">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        <a id="em-source-link" class="em-source-link" href="" target="_blank" rel="noopener noreferrer"></a>
+      </div>
+
+      <div class="cn-footer">
+        <button id="em-ai-polish" class="em-ai-polish-btn" type="button">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+          </svg>
+          <span data-i18n="ai_polish_text">Polish Text</span>
+        </button>
+        <button id="em-ai-vision" class="em-ai-polish-btn" type="button" style="display:none">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span data-i18n="ai_vision">Image AI</span>
+        </button>
+        <button id="em-save" class="cn-save-btn" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+            <polyline points="17 21 17 13 7 13 7 21"/>
+            <polyline points="7 3 7 8 15 8"/>
+          </svg>
+          <span data-i18n="save_changes">Save Changes</span>
+        </button>
+        <span id="em-status" class="cn-source-hint"></span>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="../lib/html2canvas.min.js"></script>
+  <script src="notebook.js" type="module"></script>
+
+  <!-- Agent Chat FAB + Panel -->
+  <button class="agent-fab" id="agent-fab" type="button" aria-label="Open AI Agent">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      <circle cx="12" cy="10" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="8" cy="10" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="16" cy="10" r="1" fill="currentColor" stroke="none"/>
+    </svg>
+  </button>
+
+  <div class="agent-panel" id="agent-panel" hidden>
+    <div class="agent-header">
+      <svg class="agent-header__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      <span class="agent-header__title" data-i18n="agent_title">LumiNote Agent</span>
+      <button class="agent-header__close" id="agent-close" type="button" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="agent-messages" id="agent-messages"></div>
+    <div class="agent-deep-status" id="agent-deep-status"></div>
+    <div class="agent-input-area">
+      <textarea class="agent-input" id="agent-input" rows="1" placeholder="" data-i18n-placeholder="agent_placeholder"></textarea>
+      <button class="agent-deep-think" id="agent-deep-think" type="button" aria-label="Deep Think" title="Deep Think — multi-provider analysis">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </button>
+      <button class="agent-send" id="agent-send" type="button" aria-label="Send">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="image-modal" class="nb-image-modal" hidden>
+    <div class="nb-image-modal__backdrop" data-close-image-modal="true"></div>
+    <div class="nb-image-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="image-modal-title">
+      <button class="nb-image-modal__close" id="image-modal-close" type="button" aria-label="Close image preview">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <img id="image-modal-img" class="nb-image-modal__img" alt="">
+      <div class="nb-image-modal__meta">
+        <div id="image-modal-title" class="nb-image-modal__title"></div>
+        <a id="image-modal-link" class="nb-image-modal__link" href="" target="_blank" rel="noopener noreferrer" data-i18n="open_source_page">Open source page</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

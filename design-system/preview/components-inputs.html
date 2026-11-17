@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css"><style>
+.fg { display: flex; flex-direction: column; gap: 6px; }
+.lbl { font: 500 13px/1.3 'Google Sans Text'; color: #404943; }
+.input { width: 100%; padding: 12px 14px; border: 1.5px solid rgba(192,201,194,.6); border-radius: 12px; font: 14px 'Google Sans Text'; background: rgba(251,253,249,.6); color: #191c1a; outline: none; }
+.input:focus { border-color: #1a6b4a; box-shadow: 0 0 0 3px rgba(26,107,74,.12); background: #fff; }
+.hint { font: 12px 'Google Sans Text'; color: #707973; }
+.sel-wrap { position: relative; }
+.sel { appearance: none; padding-right: 40px; cursor: pointer; }
+.arrow { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #707973; }
+</style></head><body>
+  <div class="fg">
+    <label class="lbl">API Key</label>
+    <input class="input" type="password" value="sk-•••••••••••••••••••••" />
+    <span class="hint">Stored locally; never sent to LumiNote servers.</span>
+  </div>
+  <div class="fg">
+    <label class="lbl">Model</label>
+    <div class="sel-wrap">
+      <input class="input sel" value="gpt-4o-mini" />
+      <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <span class="hint">e.g. gpt-4o-mini, gpt-4o, deepseek-chat</span>
+  </div>
+  <div class="fg">
+    <input class="input" placeholder="邮箱地址 / Email address" style="border-color:#1a6b4a;box-shadow:0 0 0 3px rgba(26,107,74,.12);background:#fff" />
+    <span class="hint" style="color:#1a6b4a">Focused state — 1.5px primary border + 3px primary-12 ring</span>
+  </div>
+</body></html>

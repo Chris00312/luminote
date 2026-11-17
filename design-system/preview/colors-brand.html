@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css"><style>
+.swatch { flex: 1; min-width: 0; height: 96px; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; color: #fff; box-shadow: var(--ln-elev-1); }
+.swatch.light { color: var(--ln-fg1); }
+.swatch .name { font: var(--ln-t-label-md); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.92; }
+.swatch .hex { font-family: var(--ln-font-mono); font-size: 11px; opacity: 0.85; }
+.gradient-bar { height: 64px; border-radius: 12px; padding: 10px 12px; color: #fff; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--ln-glow-primary); }
+.gradient-bar .name { font: var(--ln-t-label-md); font-weight: 600; }
+.gradient-bar .hex { font-family: var(--ln-font-mono); font-size: 11px; opacity: .9; }
+</style></head><body>
+  <div class="row">
+    <div class="swatch" style="background:#1a6b4a"><div class="name">Primary</div><div class="hex">#1a6b4a</div></div>
+    <div class="swatch" style="background:#228b5b"><div class="name">Mid</div><div class="hex">#228b5b</div></div>
+    <div class="swatch" style="background:#2fa373"><div class="name">Bright</div><div class="hex">#2fa373</div></div>
+    <div class="swatch light" style="background:#adf2cc"><div class="name">Container</div><div class="hex">#adf2cc</div></div>
+    <div class="swatch light" style="background:#d0f0de"><div class="name">Sec. Cont.</div><div class="hex">#d0f0de</div></div>
+  </div>
+  <div class="gradient-bar" style="background:linear-gradient(135deg,#1a6b4a,#228b5b)">
+    <div class="name">Gradient — Primary (buttons, FABs)</div><div class="hex">linear-gradient(135deg, #1a6b4a, #228b5b)</div>
+  </div>
+  <div class="gradient-bar" style="background:linear-gradient(135deg,#1a6b4a,#2fa373)">
+    <div class="name">Gradient — Hero (badges, ribbons, mark bubble)</div><div class="hex">linear-gradient(135deg, #1a6b4a, #2fa373)</div>
+  </div>
+</body></html>

@@ -1,0 +1,9 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'>
+  <rect width='16' height='16' rx='3.52' fill='#1a6b4a'/>
+  <!-- At 16px, simplify to just filled diamond + one chevron for clarity -->
+  <g transform='translate(8,8) scale(0.458) translate(-12,-12)'
+     stroke='white' stroke-linejoin='round' stroke-linecap='round'>
+    <path d='M12 2L2 7l10 5 10-5-10-5z' fill='white' stroke='none'/>
+    <path d='M2 13.5l10 5 10-5' fill='none' stroke-width='2.5'/>
+  </g>
+</svg>

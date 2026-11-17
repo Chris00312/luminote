@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+  <title>Welcome to LumiNote</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/md3-tokens.css">
+  <link rel="stylesheet" href="../content/content.css">
+  <link rel="stylesheet" href="../notebook/agent-chat.css">
+  <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+  <!-- Top chrome -->
+  <header class="welcome-topbar">
+    <div class="welcome-brand">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M2 17l10 5 10-5" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M2 12l10 5 10-5" stroke="#1a6b4a" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      <span>LumiNote</span>
+    </div>
+    <nav class="welcome-dots" role="tablist" aria-label="Chapters">
+      <button class="welcome-dot is-active" data-chapter="0" role="tab" aria-label="Chapter 1"></button>
+      <button class="welcome-dot" data-chapter="1" role="tab" aria-label="Chapter 2"></button>
+      <button class="welcome-dot" data-chapter="2" role="tab" aria-label="Chapter 3"></button>
+      <button class="welcome-dot" data-chapter="3" role="tab" aria-label="Chapter 4"></button>
+      <button class="welcome-dot" data-chapter="4" role="tab" aria-label="Chapter 5"></button>
+    </nav>
+    <button class="welcome-close" data-action="skip" aria-label="Close and skip intro">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Chapter viewport -->
+  <main class="welcome-deck" id="welcome-deck">
+
+    <!-- Chapter 1: Welcome -->
+    <section class="chapter chapter--hero" data-chapter="0">
+      <div class="chapter__hero">
+        <div class="chapter__hero-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="chapter__eyebrow" data-i18n="onboarding_ch1_eyebrow">Welcome</div>
+        <h1 class="chapter__headline" data-i18n="onboarding_ch1_headline">Your internet memory library.</h1>
+        <p class="chapter__body" data-i18n="onboarding_ch1_body">
+          Mark what matters on any page. Build a searchable knowledge base. Let AI read and write alongside you.
+        </p>
+      </div>
+    </section>
+
+    <!-- Chapter 2: Mark + Explain -->
+    <section class="chapter chapter--split chapter--ch2" data-chapter="1">
+      <div class="chapter__copy">
+        <div class="chapter__eyebrow" data-i18n="onboarding_ch2_eyebrow">Feature 1 — Mark</div>
+        <h2 class="chapter__headline" data-i18n="onboarding_ch2_headline">Highlight any text. Get instant clarity.</h2>
+        <p class="chapter__body" data-i18n="onboarding_ch2_body">
+          Select text on any webpage or PDF, click Mark, and LumiNote explains it — brief, detailed, or deep — with related concepts you can click to explore further.
+        </p>
+      </div>
+      <div class="chapter__stage" id="ch2-stage" aria-hidden="true">
+        <!-- Rendered by welcome.js on chapter enter -->
+      </div>
+    </section>
+
+    <!-- Chapter 3: Visual AI -->
+    <section class="chapter chapter--split chapter--ch3" data-chapter="2">
+      <div class="chapter__copy">
+        <div class="chapter__eyebrow" data-i18n="onboarding_ch3_eyebrow">Feature 2 — Visual AI</div>
+        <h2 class="chapter__headline" data-i18n="onboarding_ch3_headline">Don't just read — capture what you see.</h2>
+        <p class="chapter__body" data-i18n="onboarding_ch3_body">
+          Screenshot any chart, diagram, or photo. LumiNote describes it, extracts the key entities, and saves it alongside your text notes.
+        </p>
+      </div>
+      <div class="chapter__stage" id="ch3-stage" aria-hidden="true"></div>
+    </section>
+
+    <!-- Chapter 4: Moodboard -->
+    <section class="chapter chapter--split chapter--ch4" data-chapter="3">
+      <div class="chapter__copy">
+        <div class="chapter__eyebrow" data-i18n="onboarding_ch4_eyebrow">Feature 3 — Moodboard</div>
+        <h2 class="chapter__headline" data-i18n="onboarding_ch4_headline">Arrange memories on an infinite canvas.</h2>
+        <p class="chapter__body" data-i18n="onboarding_ch4_body">
+          Group related marks visually. Drag, resize, and export the whole board as one PNG to share the thinking behind a decision.
+        </p>
+      </div>
+      <div class="chapter__stage" id="ch4-stage" aria-hidden="true"></div>
+    </section>
+
+    <!-- Chapter 5: Agent Chat -->
+    <section class="chapter chapter--split chapter--ch5" data-chapter="4">
+      <div class="chapter__copy">
+        <div class="chapter__eyebrow" data-i18n="onboarding_ch5_eyebrow">Feature 4 — Agent</div>
+        <h2 class="chapter__headline" data-i18n="onboarding_ch5_headline">An AI that reasons about your moodboard.</h2>
+        <p class="chapter__body" data-i18n="onboarding_ch5_body">
+          Ask questions. The agent can read every card, add new ones, and update notes — with every tool call shown inline, so you always see what it did.
+        </p>
+      </div>
+      <div class="chapter__stage" id="ch5-stage" aria-hidden="true"></div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="chapter chapter--final" data-chapter="5">
+      <div class="chapter__hero">
+        <div class="chapter__hero-mark chapter__hero-mark--celebrate" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M2 17l10 5 10-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h1 class="chapter__headline" data-i18n="onboarding_final_headline">You're all set.</h1>
+        <p class="chapter__body" data-i18n="onboarding_final_body">
+          We created a starter board to show you around. Open your notebook to begin.
+        </p>
+        <button class="welcome-cta" data-action="finish" data-i18n="onboarding_cta_start">Start using LumiNote</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom chrome -->
+  <footer class="welcome-footbar">
+    <button class="welcome-skip" data-action="skip" data-i18n="onboarding_skip">Skip intro</button>
+    <div class="welcome-nav">
+      <button class="welcome-navbtn welcome-navbtn--prev" data-action="prev" aria-label="Previous chapter">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span data-i18n="onboarding_prev">Back</span>
+      </button>
+      <button class="welcome-navbtn welcome-navbtn--next" data-action="next" aria-label="Next chapter">
+        <span data-i18n="onboarding_next">Next</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+  <script src="welcome.js" type="module"></script>
+</body>
+</html>

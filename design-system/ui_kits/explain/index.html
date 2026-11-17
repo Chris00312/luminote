@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LumiNote — Explain Card on Page</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin: 0; font-family: var(--ln-font-body); background: #f5f5f1; color: #2a2a28; }
+  .article { max-width: 720px; margin: 0 auto; padding: 64px 40px 200px; }
+  .article h1 { font: 700 36px/1.2 Georgia, serif; color: #1a1a18; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .article .byline { font: 13px var(--ln-font-body); color: #707068; margin-bottom: 32px; }
+  .article p { font: 17px/1.65 Georgia, serif; color: #2a2a28; margin-bottom: 22px; }
+  .article ::selection { background: rgba(26,107,74,0.18); }
+  .selected { background: rgba(26,107,74,0.18); border-radius: 2px; }
+
+  /* Mark bubble — appears above selection */
+  .mark-bubble {
+    position: absolute;
+    top: 320px; left: 380px;
+    transform: translate(-50%, -100%) translateY(-10px);
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 9999px;
+    background: var(--ln-gradient-hero); color: #fff;
+    font: 600 13px var(--ln-font-brand);
+    box-shadow: 0 6px 20px rgba(26,107,74,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    cursor: pointer;
+    animation: bubble-in 250ms cubic-bezier(0.3,1.3,0.4,1);
+  }
+  .mark-bubble svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2.5; fill: none; stroke-linejoin: round; }
+  .mark-bubble::after {
+    content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%) rotate(45deg);
+    width: 10px; height: 10px; background: #2fa373;
+  }
+  @keyframes bubble-in { from { opacity: 0; transform: translate(-50%, -100%) translateY(0) scale(0.85); } to { opacity: 1; transform: translate(-50%, -100%) translateY(-10px) scale(1); } }
+
+  /* Explain card — bottom-right floater */
+  .explain-card {
+    position: fixed; bottom: 24px; right: 24px;
+    width: 380px;
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(24px) saturate(1.4);
+    border: 1px solid rgba(232,239,234,0.7);
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(10,30,18,0.18), 0 4px 16px rgba(10,30,18,0.08), inset 0 0 0 1px rgba(255,255,255,0.6);
+    overflow: hidden;
+    animation: card-in 320ms cubic-bezier(0.2,0.9,0.3,1);
+  }
+  @keyframes card-in { from { opacity: 0; transform: translateY(20px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+  .ec-head { padding: 12px 16px 10px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(232,239,234,0.7); }
+  .ec-head .ic { width: 24px; height: 24px; border-radius: 7px; background: var(--ln-gradient-primary); display: grid; place-items: center; flex-shrink: 0; }
+  .ec-head .ic svg { width: 13px; height: 13px; stroke: #fff; stroke-width: 2.5; fill: none; }
+  .ec-head .src { flex: 1; min-width: 0; font: 11px var(--ln-font-body); color: var(--ln-fg4); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ec-head .src strong { color: var(--ln-fg2); font-weight: 600; }
+  .ec-head .x { width: 24px; height: 24px; border: none; background: transparent; border-radius: 50%; cursor: pointer; color: var(--ln-fg4); display: grid; place-items: center; }
+  .ec-head .x:hover { background: rgba(26,107,74,0.08); color: var(--ln-primary); }
+  .ec-head .x svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+
+  .ec-quote { padding: 12px 16px 0; }
+  .ec-quote .q { font: 13px/1.45 Georgia, serif; color: var(--ln-fg2); padding-left: 10px; border-left: 3px solid rgba(26,107,74,0.4); }
+
+  .ec-depth { padding: 12px 16px 8px; }
+  .ec-depth-pill { display: inline-flex; padding: 3px; border-radius: 999px; background: rgba(26,107,74,0.08); }
+  .ec-depth-pill button { padding: 5px 12px; border: none; background: transparent; border-radius: 999px; font: 600 11px var(--ln-font-brand); color: var(--ln-fg3); cursor: pointer; }
+  .ec-depth-pill button.active { background: #fff; color: var(--ln-primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+  .ec-ai { padding: 4px 16px 12px; font: 13.5px/1.55 var(--ln-font-body); color: var(--ln-fg1); }
+  .ec-ai .stream-cursor { display: inline-block; width: 7px; height: 14px; background: var(--ln-primary); vertical-align: -2px; margin-left: 1px; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .ec-tags { padding: 0 16px 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .ec-tags .t { font: 10.5px var(--ln-font-brand); padding: 2px 8px; background: rgba(26,107,74,0.08); color: var(--ln-primary); border-radius: 999px; }
+
+  .ec-actions { display: flex; gap: 6px; padding: 10px 12px; border-top: 1px solid rgba(232,239,234,0.7); background: rgba(244,250,246,0.4); }
+  .ec-actions .save { flex: 1; padding: 9px 12px; border: none; border-radius: 10px; background: var(--ln-gradient-primary); color: #fff; font: 600 12.5px var(--ln-font-brand); cursor: pointer; box-shadow: var(--ln-glow-primary); display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+  .ec-actions .save svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+  .ec-actions .ic { width: 32px; height: 32px; border: none; background: rgba(26,107,74,0.06); border-radius: 9px; cursor: pointer; color: var(--ln-fg2); display: grid; place-items: center; }
+  .ec-actions .ic:hover { background: rgba(26,107,74,0.14); color: var(--ln-primary); }
+  .ec-actions .ic svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 12px; padding: 10px 16px; background: rgba(25,28,26,0.92); color: #fff; border-radius: 12px; font: 13px var(--ln-font-body); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+  .toast svg { width: 14px; height: 14px; stroke: #adf2cc; stroke-width: 2.5; fill: none; }
+  .toast .undo { color: #adf2cc; font-weight: 600; cursor: pointer; }
+</style>
+</head>
+<body data-screen-label="01 Mark + Explain on page">
+  <article class="article">
+    <h1>The geometry of biological time</h1>
+    <div class="byline">Nature · April 2026 · 7 min read</div>
+    <p>For most of evolutionary history, the rhythm of light defined the rhythm of behavior. Plants tilt to the sun; humans wake with it. <span class="selected">Circadian rhythms organize behavior on roughly 24-hour cycles, set by light and reset every morning.</span> What looks like a habit is, very often, a clock.</p>
+    <p>The mechanism turns out to be older than animals. A handful of feedback loops between proteins called PER and CRY tick at almost exactly a day, in cells from cyanobacteria to cortical neurons. They are wrong by a few minutes a day; light arrives every dawn to reset them.</p>
+    <p>Disrupting that signal — shift work, jet lag, an unlit January in Stockholm — pushes the body's internal day out of phase with the external one. The downstream costs are measured in milligrams of cortisol, points of cognitive performance, and years of life expectancy.</p>
+  </article>
+
+  <!-- Mark bubble (would appear above selection) -->
+  <button class="mark-bubble">
+    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#fff" stroke="none"/><path d="M2 12l10 5 10-5"/></svg>
+    Mark
+  </button>
+
+  <!-- Explain card (after Mark click) -->
+  <aside class="explain-card">
+    <div class="ec-head">
+      <div class="ic"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="src"><strong>nature.com</strong> · The geometry of biological time</div>
+      <button class="x"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+
+    <div class="ec-quote">
+      <div class="q">Circadian rhythms organize behavior on roughly 24-hour cycles, set by light and reset every morning.</div>
+    </div>
+
+    <div class="ec-depth">
+      <div class="ec-depth-pill">
+        <button>Brief</button>
+        <button class="active">Detailed</button>
+        <button>Deep</button>
+      </div>
+    </div>
+
+    <div class="ec-ai">
+      A built-in 24-hour timer that almost every cell carries. Light at dawn nudges it back into phase with the world; without that nudge, it drifts ~10 min/day. Misalignment (shift work, jet lag, dark winters) measurably hurts sleep, mood, and metabolism.<span class="stream-cursor"></span>
+    </div>
+
+    <div class="ec-tags">
+      <span class="t">circadian</span><span class="t">biology</span><span class="t">sleep</span><span class="t">cortisol</span>
+    </div>
+
+    <div class="ec-actions">
+      <button class="save"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Save to memory</button>
+      <button class="ic" title="Pin to moodboard"><svg viewBox="0 0 24 24"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14V12l-2-2V4H7v6L5 12z"/></svg></button>
+      <button class="ic" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button>
+      <button class="ic" title="More"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg></button>
+    </div>
+  </aside>
+
+  <!-- Toast -->
+  <div class="toast">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    Saved to memory · <span class="undo">Undo</span>
+  </div>
+</body>
+</html>

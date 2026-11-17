@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LumiNote — Small Promo Tile</title>
+<link rel="stylesheet" href="../assets/colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 440px; height: 280px; overflow: hidden;
+    background: var(--ln-bg-app);
+    font-family: var(--ln-font-body);
+    color: var(--ln-fg1);
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+  .blob {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(26,107,74,0.14), transparent 70%);
+    filter: blur(30px);
+  }
+  .blob-1 { top: -40px; right: -40px; width: 220px; height: 220px; }
+  .blob-2 { bottom: -60px; left: -40px; width: 180px; height: 180px;
+    background: radial-gradient(circle at center, rgba(47,163,115,0.12), transparent 70%);
+  }
+  .wrap { position: relative; z-index: 1; padding: 30px 32px; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
+  .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+  .brand-logo { width: 36px; height: 36px; border-radius: 10px; background: var(--ln-gradient-primary); display: grid; place-items: center; box-shadow: var(--ln-glow-primary); }
+  .brand-name { font: 700 18px var(--ln-font-brand); letter-spacing: -0.01em; }
+  .headline { font: 700 30px/1.1 var(--ln-font-brand); letter-spacing: -0.02em; margin: 0; }
+  .headline .accent { background: var(--ln-gradient-hero); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .meta { margin-top: auto; display: flex; align-items: center; gap: 8px; font: 500 12px var(--ln-font-body); color: var(--ln-fg3); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ln-brand-green-bright); }
+</style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/>
+          <path d="M3 12l9 4.5 9-4.5"/>
+          <path d="M3 16.5l9 4.5 9-4.5"/>
+        </svg>
+      </div>
+      <div class="brand-name">LumiNote</div>
+    </div>
+
+    <h1 class="headline">
+      Mark any page,<br>
+      <span class="accent">AI explains it.</span>
+    </h1>
+
+    <div class="meta">
+      <span class="dot"></span>
+      Chrome extension · Free · Chrome / Edge / Brave
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css"><style>
+.scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.chip { height: 78px; border-radius: 12px; padding: 8px 10px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(0,0,0,0.04); }
+.chip .n { font: var(--ln-t-label-md); font-weight: 600; }
+.chip .h { font-family: var(--ln-font-mono); font-size: 10.5px; }
+</style></head><body>
+  <div class="scale">
+    <div class="chip" style="background:#191c1a;color:#fff"><div class="n">fg1</div><div class="h">#191c1a</div></div>
+    <div class="chip" style="background:#404943;color:#fff"><div class="n">fg2</div><div class="h">#404943</div></div>
+    <div class="chip" style="background:#5a6560;color:#fff"><div class="n">fg3</div><div class="h">#5a6560</div></div>
+    <div class="chip" style="background:#707973;color:#fff"><div class="n">fg4</div><div class="h">#707973</div></div>
+    <div class="chip" style="background:#8a9389;color:#fff"><div class="n">fg5</div><div class="h">#8a9389</div></div>
+  </div>
+  <div class="scale">
+    <div class="chip" style="background:#fbfdf9"><div class="n">bg</div><div class="h">#fbfdf9</div></div>
+    <div class="chip" style="background:#f0f5f1"><div class="n">bg-soft</div><div class="h">#f0f5f1</div></div>
+    <div class="chip" style="background:#eaf2ec"><div class="n">bg-softer</div><div class="h">#eaf2ec</div></div>
+    <div class="chip" style="background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);border:1px solid rgba(192,201,194,0.6)"><div class="n">glass-60</div><div class="h">rgba(255,.6)</div></div>
+    <div class="chip" style="background:rgba(255,255,255,0.85);border:1px solid rgba(192,201,194,0.6)"><div class="n">glass-85</div><div class="h">rgba(255,.85)</div></div>
+  </div>
+</body></html>

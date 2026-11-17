@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css"><style>
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.box { border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.box .t { font: var(--ln-t-label-md); font-weight: 600; }
+.box .h { font-family: var(--ln-font-mono); font-size: 11px; opacity: .8; }
+.box .e { font-size: 13px; font-weight: 500; }
+</style></head><body>
+  <div class="row2">
+    <div class="box" style="background:#ffdad6;color:#410002"><div class="t">Error</div><div class="e">Couldn't reach api.openai.com</div><div class="h">#ba1a1a / container #ffdad6</div></div>
+    <div class="box" style="background:#d0f0de;color:#002114"><div class="t">Success / Sync OK</div><div class="e">Synced 12 memories</div><div class="h">#1a6b4a on #d0f0de</div></div>
+  </div>
+  <div class="row2">
+    <div class="box" style="background:rgba(196,107,0,0.10);color:#7a4400;border:1px solid rgba(196,107,0,0.18)"><div class="t">Warn (quota near limit)</div><div class="e">42 / 50 today</div><div class="h">#c46b00</div></div>
+    <div class="box" style="background:rgba(186,26,26,0.10);color:#7a0000;border:1px solid rgba(186,26,26,0.18)"><div class="t">Quota — full</div><div class="e">50 / 50 — resets at 00:00</div><div class="h">#ba1a1a</div></div>
+  </div>
+</body></html>

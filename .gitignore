@@ -1,0 +1,13 @@
+.DS_Store
+
+# Dependencies
+node_modules/
+scripts/package-lock.json
+
+# Local secrets — never commit
+.env*
+!.env.example
+.secrets.local
+**/.secrets.local
+
+luminote-mcp-server/stderr.log

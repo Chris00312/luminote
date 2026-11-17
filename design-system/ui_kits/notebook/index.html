@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LumiNote — Notebook + Moodboard</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin: 0; font-family: var(--ln-font-body); background: var(--ln-bg-app); min-height: 100vh; color: var(--ln-fg1); }
+  .app { display: grid; grid-template-columns: 240px 1fr 380px; min-height: 100vh; }
+
+  /* ── Sidebar ─────────────────────────────────────────────── */
+  .side { padding: 18px 14px; border-right: 1px solid var(--ln-divider); background: rgba(255,255,255,0.45); backdrop-filter: blur(16px); display: flex; flex-direction: column; gap: 6px; }
+  .brand { display: flex; align-items: center; gap: 10px; padding: 6px 8px 16px; }
+  .brand .tile { width: 28px; height: 28px; border-radius: 8px; background: var(--ln-gradient-primary); display: grid; place-items: center; box-shadow: var(--ln-glow-primary); }
+  .brand .tile svg { stroke: #fff; }
+  .brand .name { font: 700 16px var(--ln-font-brand); color: var(--ln-fg1); letter-spacing: -0.01em; }
+  .nav-section { font: 700 10px var(--ln-font-brand); letter-spacing: 0.09em; text-transform: uppercase; color: var(--ln-fg4); padding: 14px 10px 4px; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; cursor: pointer; font: 500 13px var(--ln-font-body); color: var(--ln-fg2); }
+  .nav-item:hover { background: rgba(26,107,74,0.06); }
+  .nav-item.active { background: rgba(26,107,74,0.12); color: var(--ln-primary); font-weight: 600; }
+  .nav-item svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .nav-item .count { margin-left: auto; font: 500 11px var(--ln-font-body); color: var(--ln-fg4); }
+
+  /* ── Canvas ──────────────────────────────────────────────── */
+  .canvas { position: relative; padding: 20px 24px 80px; overflow: hidden;
+    background-image: radial-gradient(circle, rgba(26,107,74,0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .canvas-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .canvas-head h1 { font: 700 22px var(--ln-font-brand); color: var(--ln-fg1); letter-spacing: -0.01em; }
+  .canvas-head .meta { font: 12px var(--ln-font-body); color: var(--ln-fg4); }
+  .canvas-head .spacer { flex: 1; }
+  .toolbar { display: inline-flex; gap: 4px; padding: 4px; background: rgba(255,255,255,0.7); border: 1px solid var(--ln-outline-variant); border-radius: 12px; backdrop-filter: blur(10px); }
+  .toolbar button { width: 30px; height: 30px; border: none; background: transparent; border-radius: 8px; cursor: pointer; color: var(--ln-fg3); display: grid; place-items: center; }
+  .toolbar button:hover { background: rgba(26,107,74,0.08); color: var(--ln-primary); }
+  .toolbar button.active { background: var(--ln-primary); color: #fff; }
+  .toolbar button svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; }
+  .toolbar .div { width: 1px; background: var(--ln-divider); margin: 4px 2px; }
+
+  .mb {
+    position: absolute;
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(1.3);
+    border: 1px solid rgba(232,239,234,0.7);
+    border-radius: 22px; padding: 14px;
+    box-shadow: 0 8px 24px rgba(10,30,18,0.08), inset 0 0 0 1px rgba(255,255,255,0.55);
+    cursor: grab; transition: transform 200ms, box-shadow 200ms;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .mb:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(10,30,18,0.12), inset 0 0 0 1px rgba(255,255,255,0.6); }
+  .mb.selected { box-shadow: 0 0 0 2px var(--ln-primary), 0 12px 32px rgba(26,107,74,0.18); }
+  .mb .hero { width: 100%; aspect-ratio: 16/10; border-radius: 14px; background: linear-gradient(135deg, rgba(26,107,74,0.18), rgba(47,163,115,0.28)); }
+  .mb .hero.image { background: linear-gradient(135deg, #2a4d3a, #1a6b4a); }
+  .mb .hero.warm { background: linear-gradient(135deg, #c87a3a, #d49530); }
+  .mb .quote { font: 13px/1.4 Georgia, serif; color: var(--ln-fg2); padding-left: 8px; border-left: 2.5px solid rgba(26,107,74,0.4); }
+  .mb .src { font: 10.5px var(--ln-font-body); color: var(--ln-fg4); display: flex; align-items: center; gap: 5px; }
+  .mb .src .dot { width: 8px; height: 8px; border-radius: 2px; background: linear-gradient(135deg,#1a6b4a,#2fa373); }
+  .mb .tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .mb .tag { font: 10px var(--ln-font-brand); padding: 1px 7px; background: rgba(26,107,74,0.08); color: var(--ln-primary); border-radius: 999px; }
+
+  /* ── Right rail ──────────────────────────────────────────── */
+  .rail { border-left: 1px solid var(--ln-divider); background: rgba(255,255,255,0.45); backdrop-filter: blur(16px); display: flex; flex-direction: column; }
+  .rail-head { padding: 14px 16px 10px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--ln-divider); }
+  .rail-head h3 { font: 700 14px var(--ln-font-brand); color: var(--ln-fg1); flex: 1; }
+  .rail-head .ic { width: 26px; height: 26px; border: none; background: transparent; border-radius: 7px; cursor: pointer; color: var(--ln-fg3); display: grid; place-items: center; }
+  .rail-head .ic:hover { background: rgba(26,107,74,0.08); color: var(--ln-primary); }
+  .rail-head .ic svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2; fill: none; }
+
+  .rail-tabs { display: flex; gap: 4px; padding: 8px 12px 0; border-bottom: 1px solid var(--ln-divider); }
+  .rail-tab { padding: 8px 10px; border: none; background: transparent; font: 600 12px var(--ln-font-body); color: var(--ln-fg4); cursor: pointer; border-bottom: 2px solid transparent; }
+  .rail-tab.active { color: var(--ln-primary); border-bottom-color: var(--ln-primary); }
+
+  /* Agent chat */
+  .agent { flex: 1; overflow-y: auto; padding: 14px 14px 0; display: flex; flex-direction: column; gap: 10px; }
+  .msg { padding: 10px 12px; border-radius: 14px; font: 13px/1.5 var(--ln-font-body); max-width: 92%; }
+  .msg.user { align-self: flex-end; background: var(--ln-gradient-primary); color: #fff; border-bottom-right-radius: 4px; box-shadow: var(--ln-glow-primary); }
+  .msg.ai { align-self: flex-start; background: rgba(255,255,255,0.85); color: var(--ln-fg1); border: 1px solid var(--ln-outline-variant); border-bottom-left-radius: 4px; }
+  .tool-call { align-self: flex-start; max-width: 92%; padding: 8px 12px; background: rgba(26,107,74,0.06); border: 1px solid rgba(26,107,74,0.18); border-radius: 12px; font: 11.5px var(--ln-font-mono); color: var(--ln-fg2); display: flex; align-items: center; gap: 8px; }
+  .tool-call svg { width: 12px; height: 12px; stroke: var(--ln-primary); stroke-width: 2.5; fill: none; flex-shrink: 0; }
+  .tool-call .name { color: var(--ln-primary); font-weight: 600; }
+  .tool-call .res { color: var(--ln-fg4); margin-left: auto; font-size: 11px; }
+  .composer { padding: 12px 14px 14px; border-top: 1px solid var(--ln-divider); }
+  .composer-wrap { display: flex; gap: 8px; align-items: flex-end; padding: 8px 8px 8px 14px; background: rgba(255,255,255,0.85); border: 1px solid var(--ln-outline-variant); border-radius: 14px; }
+  .composer textarea { flex: 1; border: none; background: transparent; resize: none; outline: none; font: 13px/1.4 var(--ln-font-body); color: var(--ln-fg1); height: 40px; }
+  .composer textarea::placeholder { color: var(--ln-fg5); }
+  .composer .send { width: 32px; height: 32px; border: none; border-radius: 9px; background: var(--ln-gradient-primary); color: #fff; cursor: pointer; display: grid; place-items: center; box-shadow: var(--ln-glow-primary); }
+  .composer .send svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+</style>
+</head>
+<body data-screen-label="01 Notebook + Moodboard">
+  <div class="app">
+
+    <aside class="side">
+      <div class="brand">
+        <div class="tile"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#fff" stroke="none"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/></svg></div>
+        <div class="name">LumiNote</div>
+      </div>
+      <div class="nav-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Today<span class="count">12</span></div>
+      <div class="nav-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Calendar</div>
+      <div class="nav-item"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Search</div>
+
+      <div class="nav-section">Moodboards</div>
+      <div class="nav-item active"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> Circadian biology<span class="count">8</span></div>
+      <div class="nav-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Inference tricks<span class="count">14</span></div>
+      <div class="nav-item"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Essays — attention<span class="count">5</span></div>
+      <div class="nav-item"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> New moodboard</div>
+
+      <div style="margin-top:auto; padding: 12px 8px;">
+        <div class="nav-item" style="background:rgba(26,107,74,0.08); border-radius: 12px; padding: 10px 12px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1a6b4a,#2fa373);"></div>
+          <div style="display:flex;flex-direction:column;gap:2px;font-size:12px;">
+            <strong style="color:var(--ln-fg1)">chris@luminote.app</strong>
+            <span style="font-size:11px;color:var(--ln-fg4)">Pro · 12/50 today</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="canvas">
+      <div class="canvas-head">
+        <h1>Circadian biology</h1>
+        <span class="meta">8 cards · last edited 2 min ago</span>
+        <div class="spacer"></div>
+        <div class="toolbar">
+          <button title="Select" class="active"><svg viewBox="0 0 24 24"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg></button>
+          <button title="Pan"><svg viewBox="0 0 24 24"><path d="M14 11V8a2 2 0 0 0-4 0v3M10 11V6a2 2 0 0 0-4 0v8M14 11V7a2 2 0 1 1 4 0v6M6 14v0c0 4 4 8 8 8h0a8 8 0 0 0 8-8V8"/></svg></button>
+          <div class="div"></div>
+          <button title="Add note"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <button title="Export PNG"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+        </div>
+      </div>
+
+      <div class="mb selected" style="top:80px; left:30px; width:240px;">
+        <div class="hero"></div>
+        <div class="src"><span class="dot"></span> nature.com</div>
+        <div class="quote">Circadian rhythms organize behavior on roughly 24-hour cycles…</div>
+        <div class="tags"><span class="tag">circadian</span><span class="tag">biology</span></div>
+      </div>
+
+      <div class="mb" style="top:60px; left:300px; width:230px;">
+        <div class="hero image"></div>
+        <div class="src"><span class="dot"></span> wired.com</div>
+        <div class="quote">PER and CRY proteins form a feedback loop that ticks at almost exactly a day.</div>
+      </div>
+
+      <div class="mb" style="top:300px; left:80px; width:280px;">
+        <div class="src"><span class="dot"></span> Personal note · 12 Apr</div>
+        <div class="quote" style="font-family: var(--ln-font-body); border-left-color: rgba(64,73,67,0.3); color: var(--ln-fg1);">If light is the zeitgeber for the master clock, what's the zeitgeber for the metabolic clocks? Meal timing? Open question — see Saper 2005.</div>
+        <div class="tags"><span class="tag">question</span><span class="tag">to-research</span></div>
+      </div>
+
+      <div class="mb" style="top:300px; left:380px; width:220px;">
+        <div class="hero warm"></div>
+        <div class="src"><span class="dot"></span> arxiv.org</div>
+        <div class="quote">Shift workers show 23% higher all-cause mortality across a 22-year cohort.</div>
+        <div class="tags"><span class="tag">mortality</span></div>
+      </div>
+
+      <div class="mb" style="top:80px; left:560px; width:200px;">
+        <div class="src"><span class="dot"></span> Cluster</div>
+        <div class="quote" style="font-family: var(--ln-font-brand); font-weight: 600; font-size: 14px; color: var(--ln-primary); border-left-color: var(--ln-primary);">Open question →<br>What resets the gut clock?</div>
+      </div>
+    </main>
+
+    <aside class="rail">
+      <div class="rail-head">
+        <h3>Agent</h3>
+        <button class="ic" title="History"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9"/><polyline points="3 4 3 9 8 9"/><path d="M12 7v5l3 2"/></svg></button>
+        <button class="ic" title="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="rail-tabs">
+        <button class="rail-tab active">Chat</button>
+        <button class="rail-tab">Tools</button>
+        <button class="rail-tab">Memories</button>
+      </div>
+
+      <div class="agent">
+        <div class="msg user">What do my notes say about circadian misalignment? Just the headline takeaways.</div>
+        <div class="tool-call"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span class="name">search_memories</span><span>"circadian"</span><span class="res">8 results</span></div>
+        <div class="tool-call"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span class="name">read_memory</span><span>×3</span><span class="res">ok</span></div>
+        <div class="msg ai">Three threads run through your moodboard:<br><br>1. <strong>The clock is old.</strong> PER/CRY loops appear from cyanobacteria up.<br>2. <strong>Light is the master zeitgeber</strong> — but you've flagged an open question on whether meal timing resets peripheral (e.g. gut, liver) clocks.<br>3. <strong>Misalignment is costly.</strong> One arxiv card: shift workers, +23% all-cause mortality at 22 years.<br><br>Want me to add a "what resets peripheral clocks?" card to the board?</div>
+        <div class="tool-call"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span class="name">add_moodboard_card</span><span>(pending)</span></div>
+      </div>
+
+      <div class="composer">
+        <div class="composer-wrap">
+          <textarea placeholder="Ask about your memories…"></textarea>
+          <button class="send"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</body>
+</html>

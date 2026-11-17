@@ -1,0 +1,25 @@
+{
+  "name": "luminote-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for LumiNote — bridge AI agents to LumiNote Chrome extension memory library",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "luminote-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "luminote",
+    "lumiread",
+    "chrome-extension",
+    "memory"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "ws": "^8.18.0"
+  }
+}

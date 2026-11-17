@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>LumiNote PDF Mode</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/md3-tokens.css">
+  <link rel="stylesheet" href="../vendor/pdfjs/legacy/web/pdf_viewer.css">
+  <link rel="stylesheet" href="../content/content.css">
+  <link rel="stylesheet" href="pdf-viewer.css">
+</head>
+<body>
+  <div class="pdf-shell">
+    <header class="pdf-topbar">
+      <div class="pdf-brand">
+        <div class="pdf-brand-mark">PDF</div>
+        <div class="pdf-brand-copy">
+          <div class="pdf-title-row">
+            <span class="pdf-app-name" data-i18n="pdf_mode">LumiNote PDF Mode</span>
+            <span class="pdf-page-chip" id="page-chip">p.1</span>
+          </div>
+          <div class="pdf-doc-title" id="doc-title" data-i18n="loading_pdf">Loading PDF…</div>
+        </div>
+      </div>
+
+      <div class="pdf-actions">
+        <button class="pdf-toolbar-btn" id="prev-page-btn" data-i18n-title="previous_page" title="Previous page" aria-label="Previous page">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <span class="pdf-toolbar-label" id="page-label">1 / 1</span>
+        <button class="pdf-toolbar-btn" id="next-page-btn" data-i18n-title="next_page" title="Next page" aria-label="Next page">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+        <div class="pdf-divider"></div>
+        <button class="pdf-toolbar-btn" id="zoom-out-btn" data-i18n-title="zoom_out" title="Zoom out" aria-label="Zoom out">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </button>
+        <span class="pdf-toolbar-label" id="zoom-label">100%</span>
+        <button class="pdf-toolbar-btn" id="zoom-in-btn" data-i18n-title="zoom_in" title="Zoom in" aria-label="Zoom in">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </button>
+        <button class="pdf-open-source-btn" id="open-source-btn" data-i18n="open_original">Open original</button>
+      </div>
+    </header>
+
+    <div class="pdf-hint-bar">
+      <span data-i18n="pdf_hint">Select text in this PDF to mark it into LumiNote. Scanned image PDFs are not supported in v1.</span>
+    </div>
+
+    <main class="pdf-main">
+      <div class="pdf-state" id="loading-state">
+        <div class="pdf-spinner"></div>
+        <h2 data-i18n="loading_pdf">Loading PDF…</h2>
+        <p data-i18n="preparing_pdf">LumiNote is preparing a selectable text view.</p>
+      </div>
+
+      <div class="pdf-state pdf-state--hidden" id="error-state">
+        <h2 data-i18n="cannot_open_pdf">Could not open this PDF</h2>
+        <p id="error-message"></p>
+      </div>
+
+      <div class="pdf-state pdf-state--hidden" id="upload-state">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#8a9389" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 3.5h7l3.5 3.5V19a2 2 0 0 1-2 2h-8a2.5 2.5 0 0 1-2.5-2.5v-12A3 3 0 0 1 7 3.5z"/>
+          <path d="M14 3.5V7h3.5"/>
+          <polyline points="12 18 12 12"/>
+          <polyline points="9 14 12 11 15 14"/>
+        </svg>
+        <h2 data-i18n="pdf_upload_title">No PDF opened</h2>
+        <p data-i18n="pdf_upload_desc">Upload a local PDF file, or open a PDF page in your browser and click the PDF button again.</p>
+        <button class="pdf-upload-btn" id="upload-btn" data-i18n="pdf_upload_btn">Choose PDF file</button>
+        <input type="file" id="pdf-file-input" accept=".pdf,application/pdf" style="display:none">
+      </div>
+
+      <div class="pdf-viewer-wrap pdf-state--hidden" id="viewer-shell">
+        <div id="viewerContainer" class="pdf-viewer-container">
+          <div id="viewer" class="pdfViewer"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="pdf-viewer.js"></script>
+</body>
+</html>

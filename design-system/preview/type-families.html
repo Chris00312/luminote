@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css"><style>
+.specimen { color: var(--ln-fg1); }
+.brand { font-family: 'Google Sans',sans-serif; font-weight: 700; font-size: 64px; line-height: 1; letter-spacing: -0.02em; color: var(--ln-primary); }
+.brand .light { font-weight: 400; color: var(--ln-fg3); }
+.label-row { display: flex; justify-content: space-between; align-items: baseline; }
+.fams { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding-top: 8px; border-top: 1px solid var(--ln-divider); }
+.fam .nm { font-size: 11px; color: var(--ln-fg4); text-transform: uppercase; letter-spacing: 0.08em; }
+.fam .ex { font-size: 22px; margin-top: 4px; color: var(--ln-fg1); }
+.fam .role { font-size: 11px; color: var(--ln-fg3); margin-top: 2px; }
+</style></head><body>
+  <div class="specimen">
+    <div class="label-row"><div class="brand">Aa <span class="light">Aa</span></div><div class="note">Google Sans · 400 / 700</div></div>
+    <div class="fams">
+      <div class="fam"><div class="nm">Brand / Display</div><div class="ex" style="font-family:'Google Sans',sans-serif;font-weight:700">Google Sans</div><div class="role">h1, buttons, plan names</div></div>
+      <div class="fam"><div class="nm">Body / UI</div><div class="ex" style="font-family:'Google Sans Text',sans-serif">Google Sans Text</div><div class="role">paragraphs, hints, labels</div></div>
+      <div class="fam"><div class="nm">Mono</div><div class="ex" style="font-family:'Roboto Mono',monospace">Roboto Mono</div><div class="role">kbd, code, model IDs</div></div>
+    </div>
+  </div>
+</body></html>

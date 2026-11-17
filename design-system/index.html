@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LumiNote Design System</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--ln-bg-app);
+      font-family: var(--ln-font-body);
+      color: var(--ln-fg1);
+    }
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 64px 32px 96px;
+    }
+    header.hero {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .hero__tile {
+      width: 72px; height: 72px;
+      display: grid; place-items: center;
+      background: var(--ln-primary);
+      border-radius: 18px;
+      box-shadow: var(--ln-glow-primary-lg);
+    }
+    .hero__tile svg { stroke: #fff; }
+    .hero__title { font: var(--ln-t-headline-lg); margin: 0 0 2px; letter-spacing: -0.015em; }
+    .hero__sub { font: var(--ln-t-body-md); color: var(--ln-fg3); margin: 0; }
+
+    .section { margin-bottom: 48px; }
+    .section__label {
+      font: var(--ln-t-label-sm);
+      color: var(--ln-primary);
+      background: rgba(26,107,74,0.12);
+      padding: 4px 11px;
+      border-radius: 999px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    .section__title { font: var(--ln-t-title-lg); margin: 0 0 12px; }
+    .section__body { font: var(--ln-t-body-md); color: var(--ln-fg3); margin: 0 0 20px; max-width: 60ch; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .grid--ui-kits {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .tile {
+      display: block;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: var(--ln-glass-white-2);
+      backdrop-filter: var(--ln-blur-card);
+      border: 1.5px solid var(--ln-outline-variant);
+      box-shadow: var(--ln-elev-2), var(--ln-inset-white);
+      text-decoration: none;
+      color: var(--ln-fg1);
+      transition: transform 180ms var(--ln-easing-standard), box-shadow 180ms var(--ln-easing-standard);
+    }
+    .tile:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--ln-elev-4), var(--ln-inset-white);
+      border-color: rgba(26,107,74,0.3);
+    }
+    .tile__name {
+      font: var(--ln-t-title-md);
+      margin: 0 0 2px;
+      color: var(--ln-fg1);
+    }
+    .tile__meta {
+      font: var(--ln-t-body-sm);
+      color: var(--ln-fg4);
+    }
+    .tile--kit { padding: 22px 22px; }
+    .tile--kit .tile__name { font: var(--ln-t-title-lg); margin-bottom: 4px; }
+    .tile--kit .tile__meta { font: var(--ln-t-body-md); color: var(--ln-fg3); }
+
+    .footer {
+      padding-top: 32px;
+      border-top: 1px solid var(--ln-divider);
+      font: var(--ln-t-body-sm);
+      color: var(--ln-fg4);
+    }
+    .footer a { color: var(--ln-primary); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    code { font-family: var(--ln-font-mono); font-size: 12px; background: rgba(64,73,67,0.08); border-radius: 4px; padding: 1px 5px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div class="hero__tile">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#fff" stroke="none"/>
+          <path d="M2 12l10 5 10-5" stroke="#fff"/>
+          <path d="M2 17l10 5 10-5" stroke="#fff"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="hero__title">LumiNote Design System</h1>
+        <p class="hero__sub">Tokens, type, components, and four high-fidelity UI kits — derived from <code>LumiNote/</code> source of truth.</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <span class="section__label">UI Kits</span>
+      <h2 class="section__title">Four core surfaces, live</h2>
+      <p class="section__body">Each kit is a standalone HTML file with the full surface recreated. Open in Chrome to preview; edits happen in the <code>LumiNote/</code> source, not here.</p>
+      <div class="grid grid--ui-kits">
+        <a href="ui_kits/popup/index.html" class="tile tile--kit">
+          <div class="tile__name">Popup</div>
+          <div class="tile__meta">400×600 toolbar popup — Today · Calendar · Moodboards · search</div>
+        </a>
+        <a href="ui_kits/explain/index.html" class="tile tile--kit">
+          <div class="tile__name">Explain</div>
+          <div class="tile__meta">In-page Mark bubble + AI Explain card + save toast</div>
+        </a>
+        <a href="ui_kits/notebook/index.html" class="tile tile--kit">
+          <div class="tile__name">Notebook</div>
+          <div class="tile__meta">Sidebar + Moodboard canvas + Agent rail, all in one</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="section__label">Foundations</span>
+      <h2 class="section__title">Color</h2>
+      <div class="grid">
+        <a href="preview/colors-brand.html"     class="tile"><div class="tile__name">Brand</div><div class="tile__meta">Green gradient pair</div></a>
+        <a href="preview/colors-neutrals.html"  class="tile"><div class="tile__name">Neutrals</div><div class="tile__meta">Body → placeholder ladder</div></a>
+        <a href="preview/colors-glass.html"     class="tile"><div class="tile__name">Glass</div><div class="tile__meta">Translucent surfaces + blur</div></a>
+        <a href="preview/colors-semantic.html"  class="tile"><div class="tile__name">Semantic</div><div class="tile__meta">Error, success, warn</div></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="section__label">Foundations</span>
+      <h2 class="section__title">Type</h2>
+      <div class="grid">
+        <a href="preview/type-families.html" class="tile"><div class="tile__name">Families</div><div class="tile__meta">Google Sans · Sans Text · Mono</div></a>
+        <a href="preview/type-scale.html"    class="tile"><div class="tile__name">Scale</div><div class="tile__meta">MD3 subset we actually use</div></a>
+        <a href="preview/type-in-use.html"   class="tile"><div class="tile__name">In use</div><div class="tile__meta">Real text samples</div></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="section__label">Foundations</span>
+      <h2 class="section__title">Space · Radius · Motion · Elevation</h2>
+      <div class="grid">
+        <a href="preview/spacing-scale.html"     class="tile"><div class="tile__name">Spacing scale</div><div class="tile__meta">4-pt base</div></a>
+        <a href="preview/spacing-radius.html"    class="tile"><div class="tile__name">Radius</div><div class="tile__meta">xs 4 → 2xl 22 → full</div></a>
+        <a href="preview/spacing-elevation.html" class="tile"><div class="tile__name">Elevation</div><div class="tile__meta">Soft-stacked shadows</div></a>
+        <a href="preview/spacing-motion.html"    class="tile"><div class="tile__name">Motion</div><div class="tile__meta">Easing + durations</div></a>
+      </div>
+    </section>
+
+    <section class="section">
+      <span class="section__label">Components</span>
+      <h2 class="section__title">Primitives</h2>
+      <div class="grid">
+        <a href="preview/components-buttons.html"       class="tile"><div class="tile__name">Buttons</div><div class="tile__meta">Filled · tonal · ghost · pill</div></a>
+        <a href="preview/components-inputs.html"        class="tile"><div class="tile__name">Inputs</div><div class="tile__meta">Text, select, textarea, toggle</div></a>
+        <a href="preview/components-badges.html"        class="tile"><div class="tile__name">Badges</div><div class="tile__meta">Tier pills, tag chips</div></a>
+        <a href="preview/components-cards.html"         class="tile"><div class="tile__name">Cards</div><div class="tile__meta">Glass cards, plan cards</div></a>
+        <a href="preview/components-bubble-toast.html"  class="tile"><div class="tile__name">Bubble & toast</div><div class="tile__meta">Mark bubble, save toast</div></a>
+        <a href="preview/components-iconography.html"   class="tile"><div class="tile__name">Iconography</div><div class="tile__meta">Inline SVG set</div></a>
+        <a href="preview/brand-logo.html"               class="tile"><div class="tile__name">Logo</div><div class="tile__meta">Mark · wordmark · onboarding</div></a>
+      </div>
+    </section>
+
+    <p class="footer">
+      Source of truth is the LumiNote extension codebase (<code>LumiNote/</code>).
+      See <a href="README.md">README.md</a> for tokens, rules, and voice.
+      This kit is registered as the <code>luminote-design</code> Claude Code skill — see <code>SKILL.md</code>.
+    </p>
+  </main>
+</body>
+</html>
