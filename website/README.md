@@ -25,8 +25,7 @@ website/
 │   ├── Faq.jsx                 # 常见问题
 │   ├── Footer.jsx              # CTA + 页脚
 │   └── App.jsx                 # 根组件 + 语言持久化
-└── downloads/
-    └── luminote-chrome.zip     # 安装包（由 scripts/package-extension.mjs 生成）
+(安装包不进仓库，见下方「更新安装包」)
 ```
 
 ## 本地预览
@@ -45,8 +44,9 @@ node scripts/package-extension.mjs
 # → website/downloads/luminote-chrome.zip
 ```
 
-`Download.jsx` 和 `Nav.jsx` / `Hero.jsx` / `Footer.jsx` 里的下载按钮都指向
-`downloads/luminote-chrome.zip`，替换文件即可，无需改代码。
+安装包不放在仓库里，而是通过 GitHub Releases 分发。`Download.jsx` 和
+`Nav.jsx` / `Hero.jsx` / `Footer.jsx` 里的按钮都指向
+`/releases/latest`，发新版本后自动生效，无需改代码。
 
 ## 文案
 
@@ -76,7 +76,5 @@ node scripts/package-extension.mjs
 
 ## 部署
 
-任何静态托管都可以。上传整个 `website/` 目录（含 `downloads/`）即可。
-
-注意：`downloads/*.zip` 需要以正确的内容类型提供。多数静态托管会自动识别 `.zip`，
-如果下载后文件名异常，检查服务器是否设置了 `Content-Type: application/zip`。
+任何静态托管都可以。上传整个 `website/` 目录即可 —— 安装包来自 GitHub
+Releases，不需要额外托管二进制文件。

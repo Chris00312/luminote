@@ -18,7 +18,7 @@
 </p>
 
 <p>
-  <a href="website/downloads/luminote-chrome.zip">
+  <a href="https://github.com/Chris00312/luminote/releases/latest">
     <img src="https://img.shields.io/badge/⬇_下载安装包-Chrome_/_Edge-1a6b4a?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Download installer" height="42" />
   </a>
   &nbsp;
@@ -117,7 +117,7 @@ AI 卡片从页面右下角滑入，三层深度：一句话 / 详细语境 / �
 
 **1. 下载并解压**
 
-下载 [`website/downloads/luminote-chrome.zip`](website/downloads/luminote-chrome.zip)，解压到一个固定的文件夹。
+到 [**Releases**](https://github.com/Chris00312/luminote/releases/latest) 下载最新的 `luminote-vX.Y.Z.zip`，解压到一个固定的文件夹。
 > 之后别删这个文件夹 —— 扩展要一直从它加载。
 
 **2. 打开扩展管理页**
@@ -200,7 +200,13 @@ cd luminote
 
 ```bash
 node scripts/package-extension.mjs
-# → website/downloads/luminote-chrome.zip
+# → website/downloads/luminote-chrome.zip（不进 git）
+```
+
+**发版**（打包 + 创建 GitHub Release，需先 `gh auth login`）：
+
+```bash
+node scripts/release.mjs
 ```
 
 **本地预览官网：**
@@ -241,12 +247,12 @@ LumiNote/                 Chrome 扩展本体（MV3）
 └── vendor/               第三方库（pdf.js、html2canvas）
 
 website/                  官网（静态 React + 浏览器内 Babel）
-├── components/
-└── downloads/            打包好的安装包
+├── components/           各区块组件 + 三语文案
+└── assets/               设计 token、logo、演示视频
 
 luminote-mcp-server/      MCP 服务器
-scripts/                  打包与素材生成脚本
-docs/                    README 用图
+scripts/                  打包、发版、素材生成脚本
+docs/                    README 用图（页头、徽章、截图）
 design-system/           设计系统与 UI kit
 ```
 

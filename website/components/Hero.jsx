@@ -61,7 +61,7 @@ function HeroCopy({ lang }) {
       }}>{t(COPY.hero.lede, lang)}</p>
 
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', marginTop: 4 }} id="install">
-        <a href="downloads/luminote-chrome.zip" download style={{
+        <a href="https://github.com/Chris00312/luminote/releases/latest" target="_blank" rel="noopener" style={{
           display: 'inline-flex', alignItems: 'center', gap: 9,
           padding: '14px 22px', borderRadius: 9999,
           background: 'var(--accent-gradient)',

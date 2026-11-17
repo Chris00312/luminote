@@ -69,7 +69,7 @@ function Nav({ lang, setLang }) {
         {isMobile && <div style={{ flex: 1 }}/>}
         <LangToggle lang={lang} setLang={setLang} />
 
-        <a href="downloads/luminote-chrome.zip" download title={lang === 'zh' ? '下载安装包' : lang === 'ja' ? 'インストーラーをダウンロード' : 'Download installer'} style={{
+        <a href="https://github.com/Chris00312/luminote/releases/latest" target="_blank" rel="noopener" title={lang === 'zh' ? '下载安装包' : lang === 'ja' ? 'インストーラーをダウンロード' : 'Download installer'} style={{
           display: 'inline-flex', alignItems: 'center', gap: isMobile ? 0 : 7,
           padding: isMobile ? '9px 11px' : '9px 16px', borderRadius: 9999,
           background: 'var(--accent-gradient)',

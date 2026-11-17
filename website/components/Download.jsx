@@ -6,7 +6,7 @@
 // The zip in website/downloads/ is built from this repo by scripts/package-extension.mjs.
 const DOWNLOADS = {
   chrome: {
-    href: 'downloads/luminote-chrome.zip',
+    href: 'https://github.com/Chris00312/luminote/releases/latest',
     label: { zh: '下载 Chrome / Edge 安装包', en: 'Download for Chrome / Edge', ja: 'Chrome / Edge 版をダウンロード' },
   },
   source: {

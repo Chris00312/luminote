@@ -11,3 +11,7 @@ scripts/package-lock.json
 **/.secrets.local
 
 luminote-mcp-server/stderr.log
+
+# Built installers — distributed through GitHub Releases, not git.
+# Rebuild with: node scripts/package-extension.mjs
+website/downloads/*.zip

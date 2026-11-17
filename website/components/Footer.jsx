@@ -26,7 +26,7 @@ function Footer({ lang }) {
             </p>
           </div>
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href="downloads/luminote-chrome.zip" download style={{
+            <a href="https://github.com/Chris00312/luminote/releases/latest" target="_blank" rel="noopener" style={{
               display: 'inline-flex', alignItems: 'center', gap: 9,
               padding: '15px 26px', borderRadius: 9999,
               background: '#fff', color: 'var(--accent-deep)', textDecoration: 'none',
