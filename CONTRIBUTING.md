@@ -1,61 +1,70 @@
-# 贡献指南
+# Contributing to LumiNote
 
-感谢你愿意花时间。这里没有复杂的流程。
+Thanks for taking the time. There is no heavy process here.
 
-## 开始之前
+- **Small changes** (typos, styling, docs): open a PR directly, no need to ask first.
+- **Large changes** (new features, refactors, data model changes): open an issue explaining the
+  problem first, so we can agree on the direction before you write code.
 
-- **小改动**（错别字、样式微调、文档）：直接开 PR，不用先说。
-- **大改动**（新功能、重构、改数据结构）：先开 issue 说清楚要解决什么问题，我们确认方向后再动手，避免白写。
+中文贡献指南见 [CONTRIBUTING.zh-CN.md](CONTRIBUTING.zh-CN.md)。
 
-## 本地开发
+## Local development
 
-扩展没有构建步骤。
+The extension has **no build step**.
 
 ```bash
 git clone https://github.com/Chris00312/luminote.git
 cd luminote
 ```
 
-1. 打开 `chrome://extensions`
-2. 打开右上角 **开发者模式**
-3. 点 **加载已解压的扩展程序**，选择 `LumiNote/` 目录
-4. 改完代码，点扩展卡片上的刷新按钮
+1. Open `chrome://extensions`
+2. Turn on **Developer mode** (top right)
+3. Click **Load unpacked** and select the `LumiNote/` directory
+4. After editing, click the refresh button on the extension card
 
-## 提交前自查
+If you are touching the MCP server too:
 
 ```bash
-node scripts/package-extension.mjs    # 能正常打包
-node --check LumiNote/lib/*.js        # 语法没问题
+cd luminote-mcp-server
+npm install
+node index.js
 ```
 
-如果你改了 UI，请附一张截图。
+## Before you open a PR
 
-## 硬性约束
-
-这些是产品定位，不是偏好：
-
-- **不加账号体系、不加服务器、不加遥测。** 数据必须留在用户本机。
-- **不加付费、订阅、额度限制。** 这是开源免费版。
-- **AI 只能走用户自己的 Key。** 不允许把任何 API Key 打进仓库或代码里。
-- **不破坏存量数据。** 老用户升级后，本地已存的记忆和灵感板不能丢。
-
-## 代码风格
-
-- 现有代码风格就是规范：2 空格缩进、ES modules、无分号偏好不强求。
-- 注释写**为什么**，不写**是什么**。
-- 中文、英文注释都可以。
-
-## 提交信息
-
-```
-feat: 一句话说做了什么
-fix: 修了什么
-docs: 文档
-chore: 杂项
+```bash
+node scripts/package-extension.mjs    # packaging still works
+node --check LumiNote/lib/*.js        # syntax is fine
 ```
 
-不用写得很长，但要说清楚"为什么改"。
+CI runs these on every push. If you changed the UI, include a screenshot.
 
-## 许可证
+## Non-negotiable constraints
 
-提交 PR 即表示你同意以 [MIT](LICENSE) 授权你的贡献。
+These are the product's positioning, not preferences:
+
+- **No accounts, no servers, no telemetry.** Data stays on the user's machine.
+- **No paid tiers, subscriptions or quotas.** This is the free open-source build.
+- **AI calls only ever use the user's own key.** Never commit or hard-code an API key.
+- **Do not break existing data.** A user's stored memories and boards must survive an upgrade.
+
+## Code style
+
+- Match what is already there: 2-space indent, ES modules.
+- Comments explain **why**, not **what**.
+- English and Chinese comments are both fine.
+
+## Commit messages
+
+```
+feat: what was added
+fix: what was fixed
+docs: documentation
+chore: housekeeping
+```
+
+Short is fine, but the *why* should be clear.
+
+## License
+
+By opening a PR you agree to license your contribution under [MIT](LICENSE).

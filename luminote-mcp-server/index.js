@@ -345,10 +345,12 @@ server.tool(
 // --- Tool: add_moodboard_card ---
 server.tool(
   "add_moodboard_card",
-  "Add a Memory Block to a Moodboard session as a card at a specific canvas position.",
+  "Add a card to a Moodboard/Workspace session — a Memory Block (entryId) or a widget card (cardType + cardData) — at a canvas position.",
   {
     sessionId: z.string().describe("Moodboard session ID"),
-    entryId:   z.string().describe("Memory Block ID to place on the board"),
+    entryId:   z.string().optional().describe("Memory Block ID to place (for memory cards)"),
+    cardType:  z.enum(["memory", "task", "todo", "priority", "note"]).optional().describe("Card type; omit or 'memory' places a Memory Block, otherwise a widget card built from cardData"),
+    cardData:  z.record(z.any()).optional().describe("Widget card content for non-memory cardType. Shape by type — task: { title, status: 'todo'|'doing'|'done', priority: 'P0'|'P1'|'P2'|'P3', assignee, due }; todo: { title, items: [{ id, label, done }] }; priority: { title, items: [{ id, label, priority: 'P0'..'P3' }] }; note: { title, text }"),
     x:         z.number().default(0).describe("Canvas X position in pixels"),
     y:         z.number().default(0).describe("Canvas Y position in pixels"),
   },

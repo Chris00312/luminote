@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Syntax & packaging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # The extension has no build step; this is the whole test suite.
+      - name: Syntax check — extension
+        run: |
+          fail=0
+          for f in $(find LumiNote -name '*.js' -not -path '*/vendor/*'); do
+            node --check "$f" || fail=1
+          done
+          exit $fail
+
+      - name: Syntax check — MCP server
+        run: |
+          for f in luminote-mcp-server/*.js; do
+            node --check "$f"
+          done
+
+      - name: Manifest is valid JSON and MV3
+        run: |
+          node -e "
+          const m = require('./LumiNote/manifest.json');
+          if (m.manifest_version !== 3) throw new Error('expected manifest_version 3');
+          if (!m.version) throw new Error('missing version');
+          console.log('manifest ok — v' + m.version);
+          "
+
+      - name: Packaging produces an installer
+        run: |
+          node scripts/package-extension.mjs
+          test -f website/downloads/luminote-chrome.zip
+          ls -lh website/downloads/luminote-chrome.zip

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Chris00312/luminote",
+  "title": "LumiNote",
+  "description": "Search and edit the memory cards and moodboards you saved from your browser. Local-first, no cloud.",
+  "version": "1.1.1",
+  "websiteUrl": "https://chris00312.github.io/luminote/",
+  "repository": {
+    "url": "https://github.com/Chris00312/luminote",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "luminote-mcp-server",
+      "version": "1.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
