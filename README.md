@@ -37,6 +37,13 @@
 </p>
 
 <p>
+  <a href="https://github.com/Chris00312/luminote/actions/workflows/ci.yml"><img src="https://github.com/Chris00312/luminote/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://github.com/Chris00312/luminote/stargazers"><img src="https://img.shields.io/github/stars/Chris00312/luminote?style=flat&color=1a6b4a" alt="Stars" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2fa373" alt="MIT" /></a>
+  <a href="https://github.com/Chris00312/luminote/releases/latest"><img src="https://img.shields.io/github/v/release/Chris00312/luminote?color=1a6b4a" alt="Release" /></a>
+</p>
+
+<p>
   <a href="#features"><img src="https://img.shields.io/badge/-Features-1a6b4a?style=flat-square" alt="Features" /></a>
   <a href="#install"><img src="https://img.shields.io/badge/-Install-228b5b?style=flat-square" alt="Install" /></a>
   <a href="#configure-ai"><img src="https://img.shields.io/badge/-Configure_AI-2fa373?style=flat-square" alt="Configure AI" /></a>

@@ -23,6 +23,10 @@
 </p>
 
 <p>
+  <a href="https://chris00312.github.io/luminote/">
+    <img src="https://img.shields.io/badge/▶_在线预览-官网-2fa373?style=for-the-badge&logo=googlechrome&logoColor=white" alt="在线预览" height="42" />
+  </a>
+  &nbsp;
   <a href="https://github.com/Chris00312/luminote/releases/latest">
     <img src="https://img.shields.io/badge/⬇_下载安装包-Chrome_/_Edge-1a6b4a?style=for-the-badge&logo=googlechrome&logoColor=white" alt="下载安装包" height="42" />
   </a>
@@ -30,6 +34,13 @@
   <a href="#安装">
     <img src="https://img.shields.io/badge/安装步骤-4_步搞定-2fa373?style=for-the-badge&logo=readthedocs&logoColor=white" alt="安装步骤" height="42" />
   </a>
+</p>
+
+<p>
+  <a href="https://github.com/Chris00312/luminote/actions/workflows/ci.yml"><img src="https://github.com/Chris00312/luminote/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://github.com/Chris00312/luminote/stargazers"><img src="https://img.shields.io/github/stars/Chris00312/luminote?style=flat&color=1a6b4a" alt="Stars" /></a>
+  <a href="../../LICENSE"><img src="https://img.shields.io/badge/license-MIT-2fa373" alt="MIT" /></a>
+  <a href="https://github.com/Chris00312/luminote/releases/latest"><img src="https://img.shields.io/github/v/release/Chris00312/luminote?color=1a6b4a" alt="Release" /></a>
 </p>
 
 <p>
