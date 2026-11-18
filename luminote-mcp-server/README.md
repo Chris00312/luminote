@@ -1,6 +1,6 @@
 # LumiNote MCP Server
 
-Bridge AI agents to the [LumiNote](../README.md) Chrome extension via the [Model Context Protocol](https://modelcontextprotocol.io).
+Bridge AI agents to the [LumiNote](https://github.com/Chris00312/luminote) Chrome extension via the [Model Context Protocol](https://modelcontextprotocol.io).
 
 ## Architecture
 

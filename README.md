@@ -23,6 +23,10 @@
 </p>
 
 <p>
+  <a href="https://chris00312.github.io/luminote/">
+    <img src="https://img.shields.io/badge/▶_Live_demo-website-2fa373?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live demo" height="42" />
+  </a>
+  &nbsp;
   <a href="https://github.com/Chris00312/luminote/releases/latest">
     <img src="https://img.shields.io/badge/⬇_Download_installer-Chrome_/_Edge-1a6b4a?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Download installer" height="42" />
   </a>
