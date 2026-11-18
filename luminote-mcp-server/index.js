@@ -127,7 +127,8 @@ function sendToExtension(message) {
 
 const server = new McpServer({
   name: "luminote",
-  version: "1.0.0",
+  // Keep in sync with package.json / server.json — the registry verifies this.
+  version: "1.1.2",
 });
 
 // --- Tool: create_memory ---

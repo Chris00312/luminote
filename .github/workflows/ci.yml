@@ -35,6 +35,14 @@ jobs:
             node --check "$f"
           done
 
+      # Regression test for the undeclared-zod bug: tools/list used to return
+      # "Cannot read properties of undefined (reading '_zod')" on a clean install.
+      - name: MCP server smoke test (initialize / tools/list / resources/list)
+        working-directory: luminote-mcp-server
+        run: |
+          npm ci
+          npm test
+
       - name: Manifest is valid JSON and MV3
         run: |
           node -e "

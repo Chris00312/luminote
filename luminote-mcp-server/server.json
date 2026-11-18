@@ -3,7 +3,7 @@
   "name": "io.github.Chris00312/luminote",
   "title": "LumiNote",
   "description": "Search and edit the memory cards and moodboards you saved from your browser. Local-first, no cloud.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "websiteUrl": "https://chris00312.github.io/luminote/",
   "repository": {
     "url": "https://github.com/Chris00312/luminote",
@@ -13,7 +13,7 @@
     {
       "registryType": "npm",
       "identifier": "luminote-mcp-server",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "transport": {
         "type": "stdio"
       }
