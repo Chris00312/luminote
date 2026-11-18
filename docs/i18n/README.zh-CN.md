@@ -54,6 +54,12 @@ LumiNote 做的事很简单：**把「你关注过的那个位置」连同当时
 不是书签（只存 URL，忘了为什么存），不是笔记（失去原始上下文），也不是划词翻译（只解决当下）。
 
 <div align="center">
+  <img src="../demo.gif" alt="LumiNote 18 秒演示 — 标记、解释、记住" width="76%" />
+  <br/>
+  <sub><b>18 秒演示</b> — 划词，拿到分层解释，留在灵感板上</sub>
+</div>
+
+<div align="center">
   <img src="../screenshots/how-it-works.png" alt="标记 → 解释 → 灵感板" width="88%" />
 </div>
 

@@ -58,6 +58,12 @@ LumiNote does one simple thing: **it saves the exact spot you cared about, toget
 It isn't a bookmark (URL only, you forget why), not a note (loses the original context), and not a highlight-translator (solves only the moment).
 
 <div align="center">
+  <img src="docs/demo.gif" alt="LumiNote in 18 seconds — mark, explain, remember" width="76%" />
+  <br/>
+  <sub><b>18-second demo</b> — mark, get a layered explanation, keep it on the board</sub>
+</div>
+
+<div align="center">
   <img src="docs/screenshots/how-it-works.png" alt="Mark → Explain → Moodboard" width="88%" />
 </div>
 
