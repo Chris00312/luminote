@@ -179,6 +179,8 @@ The UI ships in English and Simplified Chinese; switch under Settings → Langua
 
 Let Claude Desktop, Cursor or any MCP client read and write your memory store.
 
+[LumiNote MCP server on Glama](https://glama.ai/mcp/servers/Chris00312/luminote)
+
 ```bash
 npm install -g luminote-mcp-server
 ```
